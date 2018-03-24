@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tikoot.lauri.ddcc.CreatorActivity">
+
+    <TableLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow android:id="@+id/creator_table_general">
+            <FrameLayout>
+                <TextView
+                    android:text="Class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/creator_class"></Spinner>
+            </FrameLayout>
+            <FrameLayout>
+                <TextView
+                    android:text="Level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <NumberPicker
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"></NumberPicker>
+            </FrameLayout>
+            <FrameLayout>
+                <TextView
+                    android:text="Race"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+            </FrameLayout>
+        </TableRow>
+        <TableRow android:id="@+id/creator_table_attributes">
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tikoot.lauri.ddcc.MainActivity">
+
+    <Button
+        android:id="@+id/menu_button_creator"
+        android:text="Creator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="clicked"/>
+    <Button
+        android:id="@+id/menu_button_library"
+        android:text="Character library"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="clicked"/>
+    <Button
+        android:id="@+id/menu_button_exit"
+        android:text="Exit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="clicked"/>
+
+</LinearLayout>

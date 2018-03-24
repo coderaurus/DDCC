@@ -54,6 +54,11 @@
         <TableRow android:id="@+id/creator_table_attributes">
             <LinearLayout
                 android:orientation="vertical">
+                <TextView
+                    android:text="Attributes"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
@@ -134,6 +139,34 @@
                         android:id="@+id/creator_attribute_cha"></Spinner>
                 </LinearLayout>
             </LinearLayout>
+            <TableLayout>
+                <TableRow>
+                    <TextView
+                        android:text="Skills"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </TableRow>
+                <TableRow>
+                    <LinearLayout>
+                        <TextView
+                            android:text="Acrobatics: +0"
+                            android:gravity="left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="10dp">
+                        <TextView
+                            android:text="Investigation: +0"
+                            android:gravity="left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </TableRow>
+            </TableLayout>
         </TableRow>
     </TableLayout>
 </LinearLayout>

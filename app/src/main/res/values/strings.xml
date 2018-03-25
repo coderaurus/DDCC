@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DDCC</string>
+    <string name="app_name">DnD Character Creator</string>
     <string-array name="classes">
         <item>Barbarian</item>
         <item>Bard</item>

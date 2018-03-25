@@ -6,22 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tikoot.lauri.ddcc.CreatorActivity">
-
     <TableLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--
             General information
-            -> level, class, race, ...
+                Class, level, race, background, alignment
+
+            First row of general info
         -->
         <TableRow android:id="@+id/creator_table_general">
             <LinearLayout
                 android:orientation="vertical">
                 <TextView
                     android:text="Class"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"  />
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -31,8 +34,10 @@
                 android:orientation="vertical">
                 <TextView
                     android:text="Level"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp" />
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Spinner>
@@ -41,33 +46,40 @@
                 android:orientation="vertical">
                 <TextView
                     android:text="Race"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp" />
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Spinner>
             </LinearLayout>
         </TableRow>
-        <!--
-            Alignemnt, Background
-        -->
-        <TableRow>
+        <!-- Second row of general info-->
+        <TableRow
+            android:paddingBottom="20dp">
             <LinearLayout
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_width="150dp">
                 <TextView
                     android:text="Background"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp" />
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Spinner>
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_width="150dp">
                 <TextView
                     android:text="Alignment"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"/>
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Spinner>
@@ -83,13 +95,14 @@
                     android:text="Attributes"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp" />
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
-                        android:text="Strenght"
+                        android:text="Strength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
@@ -174,281 +187,107 @@
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
                         />
                 </TableRow>
                 <TableRow>
                     <LinearLayout
+                        android:id="@+id/skills_names"
                         android:orientation="vertical">
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Acrobatics"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:id="@+id/skill_acrobatics_mod"
-                                android:text="+0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Animal Handling"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Arcana"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Athletics"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Deception"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="History"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Insight"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Intimidation"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Investigation"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Medicine"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Nature"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Perception"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Performance"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Persuasion"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Religion"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Sleight of Hand"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:text="Stealth"
-                                android:gravity="left"
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
+                        <TextView
+                           android:text="Acrobatics"
+                           android:gravity="left"
+                           android:layout_width="110dp"
+                           android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Animal Handling"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Arcana"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Athletics"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Deception"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="History"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Insight"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Intimidation"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Investigation"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Medicine"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Nature"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Perception"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Performance"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Persuasion"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Religion"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Sleight of Hand"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Stealth"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
+                        <TextView
                                 android:text="Survival"
                                 android:gravity="left"
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content"/>
-                            <TextView
-                                android:text="+0"
-                                android:gravity="left"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/skills_modifiers"
+                        android:orientation="vertical">
                     </LinearLayout>
                 </TableRow>
             </TableLayout>

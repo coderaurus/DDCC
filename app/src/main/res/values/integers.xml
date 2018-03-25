@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="level" />
+    <integer-array name="attributes">
+        <item name="str">0</item>
+        <item name="dex">0</item>
+        <item name="con">0</item>
+        <item name="int">0</item>
+        <item name="wis">0</item>
+        <item name="cha">0</item>
+    </integer-array>
+    <integer-array name="attribute_modifiers">
+        <item name="str">0</item>
+        <item name="dex">0</item>
+        <item name="con">0</item>
+        <item name="int">0</item>
+        <item name="wis">0</item>
+        <item name="cha">0</item>
+    </integer-array>
+    <integer-array name="skills">
+        <item name="acrobatics">0</item>
+        <item name="animalHandling">0</item>
+        <item name="arcana">0</item>
+        <item name="athletics">0</item>
+        <item name="deception">0</item>
+        <item name="history">0</item>
+        <item name="insight">0</item>
+        <item name="intimidation">0</item>
+        <item name="investigation">0</item>
+        <item name="medicine">0</item>
+        <item name="nature">0</item>
+        <item name="perception">0</item>
+        <item name="performance">0</item>
+        <item name="persuasion">0</item>
+        <item name="religion">0</item>
+        <item name="sleightOfHand">0</item>
+        <item name="stealth">0</item>
+        <item name="survival">0</item>
+    </integer-array>
+</resources>

@@ -17,7 +17,9 @@
     <TableLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp" >
         <!--
             General information
                 Class, level, race, background, alignment
@@ -25,31 +27,30 @@
             First row of general info
         -->
         <TableRow android:id="@+id/creator_table_general"
-            android:orientation="vertical">
-            <LinearLayout
-                android:orientation="vertical">
-                <TextView
-                    android:text="Class"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
-                <Spinner
-                    android:id="@+id/creator_class"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            android:orientation="vertical"
+            android:paddingBottom="5dp">
             <LinearLayout
                 android:orientation="vertical">
                 <TextView
                     android:text="Level"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
-                <Spinner
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_level"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical">
+                <TextView
+                    android:text="Class"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/creator_class"
+                    android:layout_width="155dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -58,43 +59,52 @@
                     android:text="Race"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
-                <Spinner
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_race"
-                    android:layout_width="wrap_content"
+                    android:layout_width="165dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
         <!-- Second row of general info-->
         <TableRow
-            android:paddingBottom="20dp">
+            android:paddingBottom="10dp">
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="150dp">
+                android:orientation="vertical">
                 <TextView
-                    android:text="Background"
+                    android:text="Health"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp" />
-                <Spinner
-                    android:id="@+id/creator_background"
+                <TextView
+                    android:textSize="20dp"
+                    android:id="@+id/creator_health"
+                    android:layout_width="65dp"
+                    android:layout_height="wrap_content" />    
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical">
+                <TextView
+                    android:text="Background"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/creator_background"
+                    android:layout_width="155dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="150dp">
+                android:orientation="vertical">
                 <TextView
                     android:text="Alignment"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="5dp"/>
-                <Spinner
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_alignment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="165dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
@@ -119,10 +129,10 @@
                         android:text="Strength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:layout_width="75dp"
                         android:layout_height="40dp"
-                        android:id="@+id/creator_attribute_str_mod"></Spinner>
+                        android:id="@+id/creator_attribute_str_score" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -133,9 +143,9 @@
                         android:text="Dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:id="@+id/creator_attribute_dex_mod"
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/creator_attribute_dex_score"
+                        android:layout_width="75dp"
                         android:layout_height="40dp" />
                 </LinearLayout>
                 <LinearLayout
@@ -147,10 +157,10 @@
                         android:text="Constitution"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:layout_width="75dp"
                         android:layout_height="40dp"
-                        android:id="@+id/creator_attribute_con_mod" />
+                        android:id="@+id/creator_attribute_con_score" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -161,10 +171,10 @@
                         android:text="Intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:layout_width="75dp"
                         android:layout_height="40dp"
-                        android:id="@+id/creator_attribute_int_mod" />
+                        android:id="@+id/creator_attribute_int_score" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -175,10 +185,10 @@
                         android:text="Wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:layout_width="75dp"
                         android:layout_height="40dp"
-                        android:id="@+id/creator_attribute_wis_mod" />
+                        android:id="@+id/creator_attribute_wis_score" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -189,16 +199,17 @@
                         android:text="Charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <Spinner
-                        android:layout_width="wrap_content"
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:layout_width="75dp"
                         android:layout_height="40dp"
-                        android:id="@+id/creator_attribute_cha_mod" />
+                        android:id="@+id/creator_attribute_cha_score" />
                 </LinearLayout>
             </LinearLayout>
             <!--
                 Skills
             -->
-            <TableLayout>
+            <TableLayout
+                android:paddingStart="10dp">
                 <TableRow>
                     <TextView
                         android:text="Skills"
@@ -207,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"
                         />
+                    <android.support.v4.widget.Space />
                 </TableRow>
                 <TableRow>
                     <LinearLayout
@@ -215,31 +227,26 @@
                         <TextView
                             android:id="@+id/creator_skills_acrobatics"
                             android:text="Acrobatics"
-                            
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_animalhandling"
                             android:text="Animal Handling"
-                            
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_arcana"
                             android:text="Arcana"
-                            
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_athletics"
                             android:text="Athletics"
-                            
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_deception"
                             android:text="Deception"
-                            
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
@@ -311,8 +318,11 @@
                                 android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/skills_modifiers"
                         android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/skills_mods"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </TableRow>
             </TableLayout>

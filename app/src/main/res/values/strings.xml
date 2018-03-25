@@ -25,4 +25,10 @@
         <item>Human</item>
         <item>Tiefling</item>
     </string>
+    <string-array name="backgrounds">
+
+    </string-array>
+    <string-array name="alignments">
+
+    </string-array>
 </resources>

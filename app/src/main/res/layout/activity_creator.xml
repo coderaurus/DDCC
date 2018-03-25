@@ -33,14 +33,39 @@
                     android:text="Level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <NumberPicker
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"></NumberPicker>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical">
                 <TextView
                     android:text="Race"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+            </LinearLayout>
+        </TableRow>
+        <!--
+            Alignemnt, Background
+        -->
+        <TableRow>
+            <LinearLayout
+                android:orientation="vertical">
+                <TextView
+                    android:text="Background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical">
+                <TextView
+                    android:text="Alignment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <Spinner

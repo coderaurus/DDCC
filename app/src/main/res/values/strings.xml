@@ -14,7 +14,7 @@
         <item>Warlock</item>
         <item>Wizard</item>
     </string-array>
-    <string name="races">
+    <string-array name="races">
         <item>Dragonborn</item>
         <item>Dwarf</item>
         <item>Elf</item>
@@ -24,7 +24,7 @@
         <item>Half-Orc</item>
         <item>Human</item>
         <item>Tiefling</item>
-    </string>
+    </string-array>
     <string-array name="backgrounds">
         <item>Acolyte</item>
         <item>Charlatan</item>
@@ -50,5 +50,76 @@
         <item>Lawful Neutral</item>
         <item>Neutral</item>
         <item>Chaotic Neutral</item>
+    </string-array>
+    <string-array name="levels">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+        <item name="8">8</item>
+        <item name="9">9</item>
+        <item name="10">10</item>
+        <item name="11">11</item>
+        <item name="12">12</item>
+        <item name="13">13</item>
+        <item name="14">14</item>
+        <item name="15">15</item>
+        <item name="16">16</item>
+        <item name="17">17</item>
+        <item name="18">18</item>
+        <item name="19">19</item>
+        <item name="20">20</item>
+    </string-array>
+    <string-array name="attributes">
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+        <item name="8">8</item>
+        <item name="9">9</item>
+        <item name="10">10</item>
+        <item name="11">11</item>
+        <item name="12">12</item>
+        <item name="13">13</item>
+        <item name="14">14</item>
+        <item name="15">15</item>
+        <item name="16">16</item>
+        <item name="17">17</item>
+        <item name="18">18</item>
+    </string-array>
+    <string-array name="modifiers">
+        <item name="-4">-4</item>
+        <item name="-3">-3</item>
+        <item name="-2">-2</item>
+        <item name="-1">-1</item>
+        <item name="0">0</item>
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+    </string-array>
+    <string-array name="skills">
+        <item name="acrobatics">0</item>
+        <item name="animalHandling">0</item>
+        <item name="arcana">0</item>
+        <item name="athletics">0</item>
+        <item name="deception">0</item>
+        <item name="history">0</item>
+        <item name="insight">0</item>
+        <item name="intimidation">0</item>
+        <item name="investigation">0</item>
+        <item name="medicine">0</item>
+        <item name="nature">0</item>
+        <item name="perception">0</item>
+        <item name="performance">0</item>
+        <item name="persuasion">0</item>
+        <item name="religion">0</item>
+        <item name="sleightOfHand">0</item>
+        <item name="stealth">0</item>
+        <item name="survival">0</item>
     </string-array>
 </resources>

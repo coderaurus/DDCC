@@ -26,9 +26,9 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"  />
                 <Spinner
+                    android:id="@+id/creator_class"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/creator_class"></Spinner>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical">
@@ -39,8 +39,9 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp" />
                 <Spinner
+                    android:id="@+id/creator_level"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Spinner>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical">
@@ -51,8 +52,9 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp" />
                 <Spinner
+                    android:id="@+id/creator_race"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Spinner>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
         <!-- Second row of general info-->
@@ -68,8 +70,9 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp" />
                 <Spinner
+                    android:id="@+id/creator_backgrond"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Spinner>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -81,12 +84,13 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"/>
                 <Spinner
+                    android:id="@+id/creator_alignment"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></Spinner>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
         <!--
-            Attributes and skills
+            Attributes
         -->
         <TableRow android:id="@+id/creator_table_attributes">
             <LinearLayout
@@ -102,79 +106,84 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_str_text"
                         android:text="Strength"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_str"></Spinner>
+                        android:layout_height="40dp"
+                        android:id="@+id/creator_attribute_str_mod"></Spinner>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_dex_text"
                         android:text="Dexterity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
+                        android:id="@+id/creator_attribute_dex_mod"
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_dex"></Spinner>
+                        android:layout_height="40dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_con_text"
                         android:text="Constitution"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_con"></Spinner>
+                        android:layout_height="40dp"
+                        android:id="@+id/creator_attribute_con_mod" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_int_text"
                         android:text="Intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_int"></Spinner>
+                        android:layout_height="40dp"
+                        android:id="@+id/creator_attribute_int_mod" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_wis_text"
                         android:text="Wisdom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_wis"
-                        ></Spinner>
+                        android:layout_height="40dp"
+                        android:id="@+id/creator_attribute_wis_mod" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content">
                     <TextView
+                        android:id="@+id/creator_attribute_cha_text"
                         android:text="Charisma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="45dp"
-                        android:id="@+id/creator_attribute_cha"></Spinner>
+                        android:layout_height="40dp"
+                        android:id="@+id/creator_attribute_cha_mod" />
                 </LinearLayout>
             </LinearLayout>
             <!--
@@ -195,91 +204,109 @@
                         android:id="@+id/skills_names"
                         android:orientation="vertical">
                         <TextView
-                           android:text="Acrobatics"
-                           android:gravity="left"
-                           android:layout_width="110dp"
-                           android:layout_height="wrap_content"/>
+                            android:id="@+id/creator_skills_acrobatics"
+                            android:text="Acrobatics"
+                            android:gravity="left"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_animalhandling"
                             android:text="Animal Handling"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_arcana"
                             android:text="Arcana"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_athletics"
                             android:text="Athletics"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_deception"
                             android:text="Deception"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_history"
                             android:text="History"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_insight"
                             android:text="Insight"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_intimidation"
                             android:text="Intimidation"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_investigation"
                             android:text="Investigation"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_medicine"
                             android:text="Medicine"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_nature"
                             android:text="Nature"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_perception"
                             android:text="Perception"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_performance"
                             android:text="Performance"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_persuasion"
                             android:text="Persuasion"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_religion"
                             android:text="Religion"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_sleightofhand"
                             android:text="Sleight of Hand"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_stealth"
                             android:text="Stealth"
                             android:gravity="left"
                             android:layout_width="110dp"
                             android:layout_height="wrap_content"/>
                         <TextView
+                            android:id="@+id/creator_skills_survival"
                                 android:text="Survival"
                                 android:gravity="left"
                                 android:layout_width="110dp"

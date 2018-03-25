@@ -177,7 +177,6 @@
                         />
                 </TableRow>
                 <TableRow>
-                    <!-- Left column-->
                     <LinearLayout
                         android:orientation="vertical">
                         <LinearLayout
@@ -185,7 +184,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="+0 Acrobatics"
+                                android:text="Acrobatics"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/skill_acrobatics_mod"
+                                android:text="+0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Animal Handling"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -195,7 +214,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="+0 Animal Handling"
+                                android:text="Arcana"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -205,7 +229,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="+0 Arcana"
+                                android:text="Athletics"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -215,7 +244,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="+0 Athletics"
+                                android:text="Deception"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -225,7 +259,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="+0 Deception"
+                                android:text="History"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -235,7 +274,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="History: +0"
+                                android:text="Insight"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -245,7 +289,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Insight: +0"
+                                android:text="Intimidation"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -255,7 +304,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Intimidation: +0"
+                                android:text="Investigation"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -265,7 +319,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Investigation: +0"
+                                android:text="Medicine"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -275,7 +334,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Medicine: +0"
+                                android:text="Nature"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -285,7 +349,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Nature: +0"
+                                android:text="Perception"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -295,7 +364,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Perception: +0"
+                                android:text="Performance"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -305,7 +379,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Performance: +0"
+                                android:text="Persuasion"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -315,7 +394,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Persuasion: +0"
+                                android:text="Religion"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -325,7 +409,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Religion: +0"
+                                android:text="Sleight of Hand"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -335,7 +424,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Sleight of Hand: +0"
+                                android:text="Stealth"
+                                android:gravity="left"
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
@@ -345,17 +439,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
-                                android:text="Stealth: +0"
+                                android:text="Survival"
                                 android:gravity="left"
-                                android:layout_width="wrap_content"
+                                android:layout_width="110dp"
                                 android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
                             <TextView
-                                android:text="Survival: +0"
+                                android:text="+0"
                                 android:gravity="left"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>

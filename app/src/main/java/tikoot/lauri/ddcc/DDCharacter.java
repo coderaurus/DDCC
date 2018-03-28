@@ -13,11 +13,35 @@ public class DDCharacter {
     private String background;
     private String alignment;
 
-    int level, proficiency, health;
-                                // [cell 1] + [cell 2]
+    private String[] languages;
+
+    int level;
+
+    int proficiency;
+    int health;
+    int hitDie;
+
+    // [cell 1] + [cell 2]
+
     int [][] attributes;        // attribute score + modifier
     int [][] attributeSaves;    // modfiers + proficiency
     int [][] skills;            // modifier + proficiency
+
+    public String[] getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
+    }
+
+    public int getHitDie() {
+        return hitDie;
+    }
+
+    public void setHitDie(int hitDie) {
+        this.hitDie = hitDie;
+    }
 
     public String getCharacterClass() {
         return characterClass;
@@ -31,7 +55,88 @@ public class DDCharacter {
         return race;
     }
 
+    // setRace() doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
     public void setRace(String race) {
+        // Reset current racial attribute bonuses
+        switch(this.race){
+            case "Dragonborn":
+                addToAttribute("str", -2);
+                addToAttribute("cha", -2);
+                break;
+            case "Dwarf":
+                addToAttribute("con", -2);
+                break;
+            case "Elf":
+                addToAttribute("dex", -2);
+                break;
+            case "Gnome":
+                addToAttribute("int", -2);
+                break;
+            case "Half-Elf":
+                addToAttribute("cha", -2);
+                break;
+            case "Halfling":
+                addToAttribute("dex", -2);
+                break;
+            case "Half-Orc":
+                addToAttribute("str", -2);
+                addToAttribute("con", -1);
+                break;
+            case "Human":
+                addToAttribute("str", -1);
+                addToAttribute("dex", -1);
+                addToAttribute("con", -1);
+                addToAttribute("int", -1);
+                addToAttribute("wis", -1);
+                addToAttribute("cha", -1);
+                break;
+            case "Tiefling":
+                addToAttribute("int", -1);
+                addToAttribute("cha", -2);
+                break;
+            default:
+                break;
+        }
+        // Set new race
+        switch(race){
+            case "Dragonborn":
+                addToAttribute("str", 2);
+                addToAttribute("cha", 2);
+                break;
+            case "Dwarf":
+                addToAttribute("con", 2);
+                break;
+            case "Elf":
+                addToAttribute("dex", 2);
+                break;
+            case "Gnome":
+                addToAttribute("int", 2);
+                break;
+            case "HalfElf":
+                addToAttribute("cha", 2);
+                break;
+            case "Halfling":
+                addToAttribute("dex", 2);
+                break;
+            case "HalfOrc":
+                addToAttribute("str", 2);
+                addToAttribute("con", 1);
+                break;
+            case "Human":
+                addToAttribute("str", 1);
+                addToAttribute("dex", 1);
+                addToAttribute("con", 1);
+                addToAttribute("int", 1);
+                addToAttribute("wis", 1);
+                addToAttribute("cha", 1);
+                break;
+            case "Tiefling":
+                addToAttribute("int", 1);
+                addToAttribute("cha", 2);
+                break;
+            default:
+                break;
+        }
         this.race = race;
     }
 
@@ -114,6 +219,38 @@ public class DDCharacter {
             case "cha":
                 attributes[5][0] = score;
                 setAttributeModifier(5, score);
+                break;
+            default:
+                break;
+        }
+        setSkills(attr);
+    }
+
+    public void addToAttribute(String attr, int amount){
+        switch (attr){
+            case "str":
+                attributes[0][0] += amount;
+                setAttributeModifier(0, attributes[0][0]);
+                break;
+            case "dex":
+                attributes[1][0] += amount;
+                setAttributeModifier(1, attributes[1][0]);
+                break;
+            case "con":
+                attributes[2][0] += amount;
+                setAttributeModifier(2, attributes[2][0]);
+                break;
+            case "int":
+                attributes[3][0] += amount;
+                setAttributeModifier(3, attributes[3][0]);
+                break;
+            case "wis":
+                attributes[4][0] += amount;
+                setAttributeModifier(4, attributes[4][0]);
+                break;
+            case "cha":
+                attributes[5][0] += amount;
+                setAttributeModifier(5, attributes[5][0]);
                 break;
             default:
                 break;

@@ -48,6 +48,70 @@ public class DDCharacter {
     }
 
     public void setCharacterClass(String characterClass) {
+        switch(characterClass) {
+            case "Barbarian":
+                hitDie = 12;
+                setAttributeSave("str", 1);
+                setAttributeSave("con", 1);
+                break;
+            case "Bard":
+                hitDie = 8;
+                setAttributeSave("dex", 1);
+                setAttributeSave("cha", 1);
+                break;
+            case "Cleric":
+                hitDie = 8;
+                setAttributeSave("wis", 1);
+                setAttributeSave("cha", 1);
+                break;
+            case "Druid":
+                hitDie = 8;
+                setAttributeSave("int", 1);
+                setAttributeSave("wis", 1);
+                break;
+            case "Fighter":
+                hitDie = 10;
+                setAttributeSave("str", 1);
+                setAttributeSave("con", 1);
+                break;
+            case "Monk":
+                hitDie = 8;
+                setAttributeSave("str", 1);
+                setAttributeSave("dex", 1);
+                break;
+            case "Paladin":
+                hitDie = 10;
+                setAttributeSave("wis", 1);
+                setAttributeSave("cha", 1);
+                break;
+            case "Ranger":
+                hitDie = 10;
+                setAttributeSave("str", 1);
+                setAttributeSave("dex", 1);
+                break;
+            case "Rogue":
+                hitDie = 8;
+                setAttributeSave("dex", 1);
+                setAttributeSave("int", 1);
+                break;
+            case "Sorcerer":
+                hitDie = 6;
+                setAttributeSave("con", 1);
+                setAttributeSave("cha", 1);
+                break;
+            case "Warlock":
+                hitDie = 8;
+                setAttributeSave("wis", 1);
+                setAttributeSave("cha", 1);
+                break;
+            case "Wizard":
+                hitDie = 6;
+                setAttributeSave("int", 1);
+                setAttributeSave("wis", 1);
+                break;
+            default:
+                break;
+        }
         this.characterClass = characterClass;
     }
 
@@ -315,8 +379,30 @@ public class DDCharacter {
         return attributeSaves;
     }
 
-    public void setAttributeSaves(int[][] attributeSaves) {
-        this.attributeSaves = attributeSaves;
+    public void setAttributeSave(String attr, int toggle) {
+        // Toggle 1 = true, 0 = false
+        switch (attr){
+            case "str":
+                attributeSaves[0][1] = toggle;
+                break;
+            case "dex":
+                attributeSaves[1][1] = toggle;
+                break;
+            case "con":
+                attributeSaves[2][1] = toggle;
+                break;
+            case "int":
+                attributeSaves[3][1] = toggle;
+                break;
+            case "wis":
+                attributeSaves[4][1] = toggle;
+                break;
+            case "cha":
+                attributeSaves[5][1] = toggle;
+                break;
+            default:
+                break;
+        }
     }
 
     public int[][] getSkills() {

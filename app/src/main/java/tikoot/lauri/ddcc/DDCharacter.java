@@ -18,14 +18,24 @@ public class DDCharacter {
     int level;
 
     int proficiency;
+
     int health;
+
     int hitDie;
 
     // [cell 1] + [cell 2]
-
     int [][] attributes;        // attribute score + modifier
+
     int [][] attributeSaves;    // modfiers + proficiency
     int [][] skills;            // modifier + proficiency
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth() {
+        this.health = health;
+    }
 
     public String[] getLanguages() {
         return languages;
@@ -226,6 +236,7 @@ public class DDCharacter {
 
     public void setLevel(int level) {
         this.level = level;
+        setProficiency();
     }
 
     public int getProficiency() {
@@ -288,6 +299,33 @@ public class DDCharacter {
                 break;
         }
         setSkills(attr);
+    }
+
+    public int getAttributeModifier(String attr){
+        int mod = 0;
+        switch (attr){
+            case "str":
+                mod = attributes[0][1];
+                break;
+            case "dex":
+                mod = attributes[1][1];
+                break;
+            case "con":
+                mod = attributes[2][1];
+                break;
+            case "int":
+                mod = attributes[3][1];
+                break;
+            case "wis":
+                mod = attributes[4][1];
+                break;
+            case "cha":
+                mod = attributes[5][1];
+                break;
+            default:
+                break;
+        }
+        return mod;
     }
 
     public void addToAttribute(String attr, int amount){

@@ -63,67 +63,69 @@ public class DDCharacter {
         return characterClass;
     }
 
+    // TODO: Skill proficiencies
+    // TODO: Other proficiencies?
     public void setCharacterClass(String characterClass) {
         switch(characterClass) {
             case "Barbarian":
                 hitDie = 12;
-                setAttributeSave("str", 1);
-                setAttributeSave("con", 1);
+                setAttributeSave("str", true);
+                setAttributeSave("con", true);
                 break;
             case "Bard":
                 hitDie = 8;
-                setAttributeSave("dex", 1);
-                setAttributeSave("cha", 1);
+                setAttributeSave("dex", true);
+                setAttributeSave("cha", true);
                 break;
             case "Cleric":
                 hitDie = 8;
-                setAttributeSave("wis", 1);
-                setAttributeSave("cha", 1);
+                setAttributeSave("wis", true);
+                setAttributeSave("cha", true);
                 break;
             case "Druid":
                 hitDie = 8;
-                setAttributeSave("int", 1);
-                setAttributeSave("wis", 1);
+                setAttributeSave("int", true);
+                setAttributeSave("wis", true);
                 break;
             case "Fighter":
                 hitDie = 10;
-                setAttributeSave("str", 1);
-                setAttributeSave("con", 1);
+                setAttributeSave("str", true);
+                setAttributeSave("con", true);
                 break;
             case "Monk":
                 hitDie = 8;
-                setAttributeSave("str", 1);
-                setAttributeSave("dex", 1);
+                setAttributeSave("str", true);
+                setAttributeSave("dex", true);
                 break;
             case "Paladin":
                 hitDie = 10;
-                setAttributeSave("wis", 1);
-                setAttributeSave("cha", 1);
+                setAttributeSave("wis", true);
+                setAttributeSave("cha", true);
                 break;
             case "Ranger":
                 hitDie = 10;
-                setAttributeSave("str", 1);
-                setAttributeSave("dex", 1);
+                setAttributeSave("str", true);
+                setAttributeSave("dex", true);
                 break;
             case "Rogue":
                 hitDie = 8;
-                setAttributeSave("dex", 1);
-                setAttributeSave("int", 1);
+                setAttributeSave("dex", true);
+                setAttributeSave("int", true);
                 break;
             case "Sorcerer":
                 hitDie = 6;
-                setAttributeSave("con", 1);
-                setAttributeSave("cha", 1);
+                setAttributeSave("con", true);
+                setAttributeSave("cha", true);
                 break;
             case "Warlock":
                 hitDie = 8;
-                setAttributeSave("wis", 1);
-                setAttributeSave("cha", 1);
+                setAttributeSave("wis", true);
+                setAttributeSave("cha", true);
                 break;
             case "Wizard":
                 hitDie = 6;
-                setAttributeSave("int", 1);
-                setAttributeSave("wis", 1);
+                setAttributeSave("int", true);
+                setAttributeSave("wis", true);
                 break;
             default:
                 break;
@@ -423,26 +425,26 @@ public class DDCharacter {
         return attributeSaves;
     }
 
-    public void setAttributeSave(String attr, int toggle) {
+    public void setAttributeSave(String attr, boolean toggle) {
         // Toggle 1 = true, 0 = false
         switch (attr){
             case "str":
-                attributeSaves[0][1] = toggle;
+                attributeSaves[0][1] = toggle ? 1 : 0;
                 break;
             case "dex":
-                attributeSaves[1][1] = toggle;
+                attributeSaves[1][1] = toggle ? 1 : 0;
                 break;
             case "con":
-                attributeSaves[2][1] = toggle;
+                attributeSaves[2][1] = toggle ? 1 : 0;
                 break;
             case "int":
-                attributeSaves[3][1] = toggle;
+                attributeSaves[3][1] = toggle ? 1 : 0;
                 break;
             case "wis":
-                attributeSaves[4][1] = toggle;
+                attributeSaves[4][1] = toggle ? 1 : 0;
                 break;
             case "cha":
-                attributeSaves[5][1] = toggle;
+                attributeSaves[5][1] = toggle ? 1 : 0;
                 break;
             default:
                 break;
@@ -492,15 +494,170 @@ public class DDCharacter {
             default:
                 break;
         }
-        applySkillProficiencies();
     }
 
-    private void applySkillProficiencies() {
+    public void setSkillProficiency(int index, boolean toggle){
+        skills[index][1] = toggle ? 1 : 0;
+    }
+
+    public void setSkillProficiency(String skill, boolean toggle){
+        switch(skill) {
+            case "acrobatics":
+                skills[0][1] = toggle ? 1 : 0;
+                break;
+            case "animalHandling":
+                skills[1][1] = toggle ? 1 : 0;
+                break;
+            case "arcana":
+                skills[2][1] = toggle ? 1 : 0;
+                break;
+            case "athletics":
+                skills[3][1] = toggle ? 1 : 0;
+                break;
+            case "deception":
+                skills[4][1] = toggle ? 1 : 0;
+                break;
+            case "history":
+                skills[5][1] = toggle ? 1 : 0;
+                break;
+            case "insight":
+                skills[6][1] = toggle ? 1 : 0;
+                break;
+            case "intimidation":
+                skills[7][1] = toggle ? 1 : 0;
+                break;
+            case "investigation":
+                skills[8][1] = toggle ? 1 : 0;
+                break;
+            case "medicine":
+                skills[9][1] = toggle ? 1 : 0;
+                break;
+            case "nature":
+                skills[10][1] = toggle ? 1 : 0;
+                break;
+            case "perception":
+                skills[11][1] = toggle ? 1 : 0;
+                break;
+            case "performance":
+                skills[12][1] = toggle ? 1 : 0;
+                break;
+            case "persuasion":
+                skills[13][1] = toggle ? 1 : 0;
+                break;
+            case "religion":
+                skills[14][1] = toggle ? 1 : 0;
+                break;
+            case "sleightOfHand":
+                skills[15][1] = toggle ? 1 : 0;
+                break;
+            case "stealth":
+                skills[16][1] = toggle ? 1 : 0;
+                break;
+            case "survival":
+                skills[17][1] = toggle ? 1 : 0;
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    public void applySkillProficiencies() {
         for(int[] skill: skills) {
             // 1 = has proficiency
             if(skill[1] == 1) {
                 skill[0] += proficiency;
             }
         }
+    }
+
+    public void resetSkillProficiencies() {
+        for(int[] skill: skills) {
+            // 1 = has proficiency
+            if(skill[1] == 1) {
+                skill[0] -= proficiency;
+                skill[1] = 0;
+            }
+        }
+    }
+
+    public int [] randomizeSkillsByClass(String cls){
+        int [] skillPool;
+
+        switch (cls){
+            case "Barbarian":
+                skillPool = new int[]{1, 3, 7, 10, 11, 17};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Bard":
+                skillPool = new int[]{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+                skillPool = chooseSkills(3, skillPool);
+                break;
+            case "Cleric":
+                skillPool = new int[]{5,6,9,13,14};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Druid":
+                skillPool = new int[]{1,2,6,9,10,11,14,17};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Fighter":
+                skillPool = new int[]{0,1,3,5,6,7,11,17};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Monk":
+                skillPool = new int[]{0,3,5,6,14,17};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Paladin":
+                skillPool = new int[]{3,6,7,9,13,14};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Ranger":
+                skillPool = new int[]{1,3,6,8,10,11,16,17};
+                skillPool = chooseSkills(3, skillPool);
+                break;
+            case "Rogue":
+                skillPool = new int[]{0,3,4,6,7,8,11,12,13,15,16};
+                skillPool = chooseSkills(4, skillPool);
+                break;
+            case "Sorcerer":
+                skillPool = new int[]{2,4,6,7,13,14};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Warlock":
+                skillPool = new int[]{2,4,5,7,8,10,14};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            case "Wizard":
+                skillPool = new int[]{2,5,6,8,9,14};
+                skillPool = chooseSkills(2, skillPool);
+                break;
+            default:
+                skillPool = new int[]{-1};
+                break;
+        }
+
+        return skillPool;
+    }
+
+    private int[] chooseSkills(int amount, int[] skillPool) {
+        int[] chosenSkills = new int[amount];
+        for(int i =0; i<chosenSkills.length; i++) {
+            boolean isTaken = false;
+            while(isTaken){
+                int randomSkill = DDCC_Utils.randomInt(skillPool.length)-1;
+                for(int skill : chosenSkills){
+                    if(skill == randomSkill){
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if(!isTaken){
+                    chosenSkills[i] = randomSkill;
+                }
+            }
+        }
+        return chosenSkills;
     }
 }

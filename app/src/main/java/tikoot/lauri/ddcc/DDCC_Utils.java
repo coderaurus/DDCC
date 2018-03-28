@@ -4,6 +4,12 @@ import java.util.Random;
 
 public class DDCC_Utils {
 
+    // Easier method to call for random number
+    // ( 1 - value ) both inclusive
+    public static int randomInt(int value){
+        return new Random().nextInt(value) + 1;
+    }
+
     public static int rollDie(int  die) {
         Random rand = new Random();
         return rand.nextInt(die) + 1;

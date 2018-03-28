@@ -2,13 +2,14 @@ package tikoot.lauri.ddcc;
 
 import java.util.Random;
 
-public class Utils {
-    public int rollDie(int  die) {
+public class DDCC_Utils {
+
+    public static int rollDie(int  die) {
         Random rand = new Random();
         return rand.nextInt(die) + 1;
     }
 
-    public int rollDies(int die, int times, String... options){
+    public static int rollDies(int die, int times, String... options){
         int result = 0;
         // Any options given? => Cycle through them
         if(options.length > 0){

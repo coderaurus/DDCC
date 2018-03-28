@@ -16,11 +16,8 @@ public class DDCharacter {
     private String[] languages;
 
     int level;
-
     int proficiency;
-
     int health;
-
     int hitDie;
 
     // [cell 1] + [cell 2]
@@ -33,8 +30,17 @@ public class DDCharacter {
         return health;
     }
 
-    public void setHealth() {
-        this.health = health;
+    // Requires CON modifier set
+    public void setHealth(int level) {
+        if(level == 1) {
+            this.health = hitDie + getAttributeModifier("con");
+        }
+        else {
+            int levelUp = level - getLevel();
+            for(int i=0; i<levelUp && levelUp > 0; i++) {
+                this.health += DDCC_Utils.rollDie(hitDie) + getAttributeModifier("con");
+            }
+        }
     }
 
     public String[] getLanguages() {

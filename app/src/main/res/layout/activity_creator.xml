@@ -326,6 +326,24 @@
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
+            <TableLayout
+                android:paddingStart="10dp">
+                android:orientation="vertical">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/languages_title"
+                        android:text="Languages"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/languages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+            </TableLayout>
         </TableRow>
     </TableLayout>
 </LinearLayout>

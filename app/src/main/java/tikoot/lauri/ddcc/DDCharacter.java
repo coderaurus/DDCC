@@ -1,5 +1,8 @@
 package tikoot.lauri.ddcc;
 
+import android.util.Log;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,6 +30,16 @@ public class DDCharacter {
 
     int [][] attributeSaves;    // modfiers + proficiency
     int [][] skills;            // modifier + proficiency
+
+    public DDCharacter() {
+        setLevel(1);
+        randomizeAttributes();
+        randomizeRace();
+        randommizeCharacterClass();
+        applySkillProficiencies();
+        setHealth(getLevel());
+        Log.i("DDCharacter", "Character created! \n" + this.toString());
+    }
 
     public int getHealth() {
         return health;
@@ -104,8 +117,47 @@ public class DDCharacter {
         return characterClass;
     }
 
-    // TODO: Skill proficiencies
-    // TODO: Other proficiencies?
+    public void randommizeCharacterClass(){
+        switch (DDCC_Utils.randomInt(12)){
+            case 1:
+                setCharacterClass("Barbarian");
+                break;
+            case 2:
+                setCharacterClass("Bard");
+                break;
+            case 3:
+                setCharacterClass("Cleric");
+                break;
+            case 4:
+                setCharacterClass("Druid");
+                break;
+            case 5:
+                setCharacterClass("Fighter");
+                break;
+            case 6:
+                setCharacterClass("Monk");
+                break;
+            case 7:
+                setCharacterClass("Paladin");
+                break;
+            case 8:
+                setCharacterClass("Ranger");
+                break;
+            case 9:
+                setCharacterClass("Rogue");
+                break;
+            case 10:
+                setCharacterClass("Sorcerer");
+                break;
+            case 11:
+                setCharacterClass("Warlock");
+                break;
+            case 12:
+                setCharacterClass("Wizard");
+                break;
+        }
+    }
+
     public void setCharacterClass(String characterClass) {
         switch(characterClass) {
             case "Barbarian":
@@ -176,6 +228,38 @@ public class DDCharacter {
 
     public String getRace() {
         return race;
+    }
+
+    public void randomizeRace() {
+        switch (DDCC_Utils.randomInt(9)){
+            case 1:
+                setRace("Dragonborn");
+                break;
+            case 2:
+                setRace("Dwarf");
+                break;
+            case 3:
+                setRace("Elf");
+                break;
+            case 4:
+                setRace("Gnome");
+                break;
+            case 5:
+                setRace("Half-Elf");
+                break;
+            case 6:
+                setRace("Halfling");
+                break;
+            case 7:
+                setRace("Half-Orc");
+                break;
+            case 8:
+                setRace("Human");
+                break;
+            case 9:
+                setRace("Tiefling");
+                break;
+        }
     }
 
     // setRace() doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
@@ -345,6 +429,9 @@ public class DDCharacter {
     public void setLevel(int level) {
         this.level = level;
         setProficiency();
+        /* TODO:    Implement Abiliy (aka attribute) Score additions at lvls 4, 8, 12, 16 and 19
+                    Needs: Method(s) for adding attribute by 1) random or 2) class
+         */
     }
 
     public int getProficiency() {
@@ -375,6 +462,15 @@ public class DDCharacter {
 
     public void setAttributes(int[][] attributes) {
         this.attributes = attributes;
+    }
+
+    public void randomizeAttributes(){
+        setAttribute("str", DDCC_Utils.rollDies(6, 4, "smallest"));
+        setAttribute("dex", DDCC_Utils.rollDies(6, 4, "smallest"));
+        setAttribute("con", DDCC_Utils.rollDies(6, 4, "smallest"));
+        setAttribute("int", DDCC_Utils.rollDies(6, 4, "smallest"));
+        setAttribute("wis", DDCC_Utils.rollDies(6, 4, "smallest"));
+        setAttribute("cha", DDCC_Utils.rollDies(6, 4, "smallest"));
     }
 
     public void setAttribute(String attr, int score){
@@ -468,7 +564,7 @@ public class DDCharacter {
         setSkills(attr);
     }
 
-    private void setAttributeModifier(int i, int score) {
+    public void setAttributeModifier(int i, int score) {
         int mod = 0;
         if(score == 1){
             mod = -5;
@@ -745,7 +841,7 @@ public class DDCharacter {
         return skillPool;
     }
 
-    private int[] chooseSkills(int amount, int[] skillPool) {
+    public int[] chooseSkills(int amount, int[] skillPool) {
         int[] chosenSkills = new int[amount];
         for(int i =0; i<chosenSkills.length; i++) {
             boolean isTaken = false;
@@ -763,5 +859,23 @@ public class DDCharacter {
             }
         }
         return chosenSkills;
+    }
+
+    @Override
+    public String toString() {
+        return "DDCharacter{" +
+                "characterClass='" + characterClass + '\'' +
+                ", race='" + race + '\'' +
+                ", background='" + background + '\'' +
+                ", alignment='" + alignment + '\'' +
+                ", languages=" + languages +
+                ", level=" + level +
+                ", proficiency=" + proficiency +
+                ", health=" + health +
+                ", hitDie=" + hitDie +
+                ", attributes=" + Arrays.toString(attributes) +
+                ", attributeSaves=" + Arrays.toString(attributeSaves) +
+                ", skills=" + Arrays.toString(skills) +
+                '}';
     }
 }

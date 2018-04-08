@@ -53,9 +53,42 @@ public class DDCharacter {
         this.languages = languages;
     }
 
-    public void addLanguage(String lang) {
-        if(!languages.contains(lang)) {
-            languages.add(lang);
+    public void addLanguage(String... langs) {
+        for(String lang : langs){
+            if(!languages.contains(lang)) {
+                languages.add(lang);
+            }
+        }
+    }
+
+    public void addRandomLanguages(int amount){
+        for(int i=0; i<amount;) {
+            String lang = randomLanguage();
+            if(!languages.contains(lang)){
+                languages.add(lang);
+                i++;
+            }
+        }
+    }
+
+    public String randomLanguage(){
+        switch (DDCC_Utils.randomInt(7)) {
+            case 1:
+                return "Dwarvish";
+            case 2:
+                return "Elvish";
+            case 3:
+                return "Giant";
+            case 4:
+                return "Gnomish";
+            case 5:
+                return "Goblin";
+            case 6:
+                return "Halfling";
+            case 7:
+                return "Orc";
+            default:
+                return "N/A";
         }
     }
 
@@ -152,25 +185,33 @@ public class DDCharacter {
             case "Dragonborn":
                 addToAttribute("str", -2);
                 addToAttribute("cha", -2);
+                addLanguage("Common", "Draconic");
                 break;
             case "Dwarf":
                 addToAttribute("con", -2);
+                addLanguage("Common", "Dwarvish");
                 break;
             case "Elf":
                 addToAttribute("dex", -2);
+                addLanguage("Common", "Elvish");
                 break;
             case "Gnome":
                 addToAttribute("int", -2);
+                addLanguage("Common", "Gnomish");
                 break;
             case "Half-Elf":
                 addToAttribute("cha", -2);
+                addLanguage("Common", "Elvish");
+                addRandomLanguages(1);
                 break;
             case "Halfling":
                 addToAttribute("dex", -2);
+                addLanguage("Common", "Halfling");
                 break;
             case "Half-Orc":
                 addToAttribute("str", -2);
                 addToAttribute("con", -1);
+                addLanguage("Common", "Orc");
                 break;
             case "Human":
                 addToAttribute("str", -1);
@@ -179,10 +220,13 @@ public class DDCharacter {
                 addToAttribute("int", -1);
                 addToAttribute("wis", -1);
                 addToAttribute("cha", -1);
+                addLanguage("Common");
+                addRandomLanguages(1);
                 break;
             case "Tiefling":
                 addToAttribute("int", -1);
                 addToAttribute("cha", -2);
+                addLanguage("Common", "Infernal");
                 break;
             default:
                 break;
@@ -238,30 +282,48 @@ public class DDCharacter {
         this.background = background;
         switch(background) {
             case "Acolyte":
+                setSkillProficiency(true, "Insight", "Religion");
+                addRandomLanguages(2);
                 break;
             case "Charlatan":
+                setSkillProficiency(true, "Deception", "Sleight_of_Hand");
                 break;
             case "Criminal":
+                setSkillProficiency(true, "Deception", "Stealth");
                 break;
             case "Entertainer":
+                setSkillProficiency(true,  "Acrobatics", "Performance");
                 break;
             case "Folk Hero":
+                setSkillProficiency(true,  "Animal_Handling", "Survival");
                 break;
             case "Guild Artisan":
+                setSkillProficiency(true,  "Insight", "Persuasion");
+                addRandomLanguages(1);
                 break;
             case "Hermit":
+                setSkillProficiency(true,  "Medicine", "Religion");
                 break;
             case "Noble":
+                setSkillProficiency(true,  "History", "Persuasion");
+                addRandomLanguages(1);
                 break;
             case "Outlander":
+                setSkillProficiency(true,  "Athletics", "Survival");
+                addRandomLanguages(1);
                 break;
             case "Sage":
+                setSkillProficiency(true,  "Arcana", "History");
+                addRandomLanguages(2);
                 break;
             case "Sailor":
+                setSkillProficiency(true,  "Athletics", "Perception");
                 break;
             case "Soldier":
+                setSkillProficiency(true,  "Athletics", "Intimidation");
                 break;
             case "Urchin":
+                setSkillProficiency(true,   "Sleight_Of_Hand", "Stealth");
                 break;
             default:
                 break;
@@ -546,7 +608,7 @@ public class DDCharacter {
                 case "acrobatics":
                     this.skills[0][1] = toggle ? 1 : 0;
                     break;
-                case "animalHandling":
+                case "animal_handling":
                     this.skills[1][1] = toggle ? 1 : 0;
                     break;
                 case "arcana":
@@ -588,7 +650,7 @@ public class DDCharacter {
                 case "religion":
                     this.skills[14][1] = toggle ? 1 : 0;
                     break;
-                case "sleightOfHand":
+                case "sleight_of_hand":
                     this.skills[15][1] = toggle ? 1 : 0;
                     break;
                 case "stealth":

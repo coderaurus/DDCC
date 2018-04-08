@@ -236,6 +236,36 @@ public class DDCharacter {
 
     public void setBackground(String background) {
         this.background = background;
+        switch(background) {
+            case "Acolyte":
+                break;
+            case "Charlatan":
+                break;
+            case "Criminal":
+                break;
+            case "Entertainer":
+                break;
+            case "Folk Hero":
+                break;
+            case "Guild Artisan":
+                break;
+            case "Hermit":
+                break;
+            case "Noble":
+                break;
+            case "Outlander":
+                break;
+            case "Sage":
+                break;
+            case "Sailor":
+                break;
+            case "Soldier":
+                break;
+            case "Urchin":
+                break;
+            default:
+                break;
+        }        
     }
 
     public String getAlignment() {
@@ -509,65 +539,67 @@ public class DDCharacter {
         skills[index][1] = toggle ? 1 : 0;
     }
 
-    public void setSkillProficiency(String skill, boolean toggle){
-        skill = skill.toLowerCase();
-        switch(skill) {
-            case "acrobatics":
-                skills[0][1] = toggle ? 1 : 0;
-                break;
-            case "animalHandling":
-                skills[1][1] = toggle ? 1 : 0;
-                break;
-            case "arcana":
-                skills[2][1] = toggle ? 1 : 0;
-                break;
-            case "athletics":
-                skills[3][1] = toggle ? 1 : 0;
-                break;
-            case "deception":
-                skills[4][1] = toggle ? 1 : 0;
-                break;
-            case "history":
-                skills[5][1] = toggle ? 1 : 0;
-                break;
-            case "insight":
-                skills[6][1] = toggle ? 1 : 0;
-                break;
-            case "intimidation":
-                skills[7][1] = toggle ? 1 : 0;
-                break;
-            case "investigation":
-                skills[8][1] = toggle ? 1 : 0;
-                break;
-            case "medicine":
-                skills[9][1] = toggle ? 1 : 0;
-                break;
-            case "nature":
-                skills[10][1] = toggle ? 1 : 0;
-                break;
-            case "perception":
-                skills[11][1] = toggle ? 1 : 0;
-                break;
-            case "performance":
-                skills[12][1] = toggle ? 1 : 0;
-                break;
-            case "persuasion":
-                skills[13][1] = toggle ? 1 : 0;
-                break;
-            case "religion":
-                skills[14][1] = toggle ? 1 : 0;
-                break;
-            case "sleightOfHand":
-                skills[15][1] = toggle ? 1 : 0;
-                break;
-            case "stealth":
-                skills[16][1] = toggle ? 1 : 0;
-                break;
-            case "survival":
-                skills[17][1] = toggle ? 1 : 0;
-                break;
-            default:
-                break;
+    public void setSkillProficiency(boolean toggle, String... skills){
+        for(String skill : skills) {
+            skill = skill.toLowerCase();
+            switch(skill) {
+                case "acrobatics":
+                    this.skills[0][1] = toggle ? 1 : 0;
+                    break;
+                case "animalHandling":
+                    this.skills[1][1] = toggle ? 1 : 0;
+                    break;
+                case "arcana":
+                    this.skills[2][1] = toggle ? 1 : 0;
+                    break;
+                case "athletics":
+                    this.skills[3][1] = toggle ? 1 : 0;
+                    break;
+                case "deception":
+                    this.skills[4][1] = toggle ? 1 : 0;
+                    break;
+                case "history":
+                    this.skills[5][1] = toggle ? 1 : 0;
+                    break;
+                case "insight":
+                    this.skills[6][1] = toggle ? 1 : 0;
+                    break;
+                case "intimidation":
+                    this.skills[7][1] = toggle ? 1 : 0;
+                    break;
+                case "investigation":
+                    this.skills[8][1] = toggle ? 1 : 0;
+                    break;
+                case "medicine":
+                    this.skills[9][1] = toggle ? 1 : 0;
+                    break;
+                case "nature":
+                    this.skills[10][1] = toggle ? 1 : 0;
+                    break;
+                case "perception":
+                    this.skills[11][1] = toggle ? 1 : 0;
+                    break;
+                case "performance":
+                    this.skills[12][1] = toggle ? 1 : 0;
+                    break;
+                case "persuasion":
+                    this.skills[13][1] = toggle ? 1 : 0;
+                    break;
+                case "religion":
+                    this.skills[14][1] = toggle ? 1 : 0;
+                    break;
+                case "sleightOfHand":
+                    this.skills[15][1] = toggle ? 1 : 0;
+                    break;
+                case "stealth":
+                    this.skills[16][1] = toggle ? 1 : 0;
+                    break;
+                case "survival":
+                    this.skills[17][1] = toggle ? 1 : 0;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 package tikoot.lauri.ddcc;
 
+import java.util.List;
+
 /**
  * Created by LaglessLlama on 26.3.18.
  *
@@ -13,7 +15,7 @@ public class DDCharacter {
     private String background;
     private String alignment;
 
-    private String[] languages;
+    private List<String> languages;
 
     int level;
     int proficiency;
@@ -43,12 +45,18 @@ public class DDCharacter {
         }
     }
 
-    public String[] getLanguages() {
+    public List<String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(String[] languages) {
+    public void setLanguages(List<String> languages) {
         this.languages = languages;
+    }
+
+    public void addLanguage(String lang) {
+        if(!languages.contains(lang)) {
+            languages.add(lang);
+        }
     }
 
     public int getHitDie() {
@@ -460,6 +468,7 @@ public class DDCharacter {
     }
 
     private void setSkills(String attr) {
+        attr = attr.toLowerCase();
         switch (attr){
             case "str":
                 skills[3][0] = attributes[0][1];
@@ -501,6 +510,7 @@ public class DDCharacter {
     }
 
     public void setSkillProficiency(String skill, boolean toggle){
+        skill = skill.toLowerCase();
         switch(skill) {
             case "acrobatics":
                 skills[0][1] = toggle ? 1 : 0;

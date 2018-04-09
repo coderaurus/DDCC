@@ -3,12 +3,15 @@ package tikoot.lauri.ddcc;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-public class CreatorActivity extends AppCompatActivity {
+public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //TODO: All the Spinners need something to select the randomized value
     private Spinner classes, levels, races, backgrounds, alignments;
     private Spinner [] attributes;
@@ -54,6 +57,7 @@ public class CreatorActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         levels.setAdapter(adapter);
         levels.setSelection(findSelection(levels.getAdapter(), character.getLevel()));
+        levels.setOnItemSelectedListener(this);
 
         races = (Spinner) findViewById(R.id.creator_race);
         adapter = ArrayAdapter.createFromResource(this,
@@ -114,5 +118,23 @@ public class CreatorActivity extends AppCompatActivity {
 
     public String getHealthText() {
         return character.getHealth() + " (d" + character.getHitDie() + ")";
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        switch (parent.getId()){
+            case R.id.creator_level:
+                Log.i("CreatorActivity", "New level:" + parent.getItemAtPosition(pos).toString());
+                int newLevel = Integer.parseInt(parent.getItemAtPosition(pos).toString());
+                character.setHealth(newLevel);
+                character.setLevel(newLevel);
+                health.setText(getHealthText());
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

@@ -70,8 +70,20 @@ public class DDCharacter implements Serializable {
         }
         else {
             int levelUp = level - getLevel();
-            for(int i=0; i<levelUp && levelUp > 0; i++) {
-                this.health += DDCC_Utils.rollDie(hitDie) + getAttributeModifier("con");
+            if(levelUp > 0){
+                for(int i=0; i<levelUp; i++) {
+                    this.health += DDCC_Utils.rollDie(hitDie) + getAttributeModifier("con");
+                }
+            }
+            else if(levelUp < 0){
+                for(int i=0; i>levelUp; i--) {
+                    if(i==0){
+                        this.health = hitDie + getAttributeModifier("con");
+                    }
+                    else {
+                        this.health += DDCC_Utils.rollDie(hitDie) + getAttributeModifier("con");
+                    }
+                }
             }
         }
     }

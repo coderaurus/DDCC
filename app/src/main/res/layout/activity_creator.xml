@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tikoot.lauri.ddcc.CreatorActivity">
+    tools:context="tikoot.lauri.ddcc.CreatorActivity"
+    android:paddingStart="10sp"
+    android:paddingTop="10sp">
     <!--
         TODO: MenuBar
          Menu
@@ -14,12 +16,6 @@
                 | "Options" (Optional?)
                 | "Exit"
     -->
-    <TableLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp" >
         <!--
             General information
                 Class, level, race, background, alignment
@@ -28,7 +24,7 @@
         -->
         <TableRow android:id="@+id/creator_table_general"
             android:orientation="vertical"
-            android:paddingBottom="5dp">
+            android:paddingBottom="5sp">
             <LinearLayout
                 android:orientation="vertical">
                 <TextView
@@ -38,7 +34,7 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_level"
-                    android:layout_width="75dp"
+                    android:layout_width="75sp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -50,7 +46,7 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_class"
-                    android:layout_width="155dp"
+                    android:layout_width="155sp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -62,13 +58,13 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_race"
-                    android:layout_width="165dp"
+                    android:layout_width="165sp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
         <!-- Second row of general info-->
         <TableRow
-            android:paddingBottom="10dp">
+            android:paddingBottom="10sp">
             <LinearLayout
                 android:orientation="vertical">
                 <TextView
@@ -76,11 +72,11 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5sp" />
                 <TextView
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:id="@+id/creator_health"
-                    android:layout_width="65dp"
+                    android:layout_width="65sp"
                     android:layout_height="wrap_content" />    
             </LinearLayout>
             <LinearLayout
@@ -92,7 +88,7 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_background"
-                    android:layout_width="155dp"
+                    android:layout_width="155sp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -104,7 +100,7 @@
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/creator_alignment"
-                    android:layout_width="165dp"
+                    android:layout_width="165sp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </TableRow>
@@ -119,7 +115,7 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5sp" />
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
@@ -130,8 +126,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="75dp"
-                        android:layout_height="40dp"
+                        android:layout_width="75sp"
+                        android:layout_height="40sp"
                         android:id="@+id/creator_attribute_str_score" />
                 </LinearLayout>
                 <LinearLayout
@@ -145,8 +141,8 @@
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/creator_attribute_dex_score"
-                        android:layout_width="75dp"
-                        android:layout_height="40dp" />
+                        android:layout_width="75sp"
+                        android:layout_height="40sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
@@ -158,8 +154,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="75dp"
-                        android:layout_height="40dp"
+                        android:layout_width="75sp"
+                        android:layout_height="40sp"
                         android:id="@+id/creator_attribute_con_score" />
                 </LinearLayout>
                 <LinearLayout
@@ -172,8 +168,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="75dp"
-                        android:layout_height="40dp"
+                        android:layout_width="75sp"
+                        android:layout_height="40sp"
                         android:id="@+id/creator_attribute_int_score" />
                 </LinearLayout>
                 <LinearLayout
@@ -186,8 +182,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="75dp"
-                        android:layout_height="40dp"
+                        android:layout_width="75sp"
+                        android:layout_height="40sp"
                         android:id="@+id/creator_attribute_wis_score" />
                 </LinearLayout>
                 <LinearLayout
@@ -200,8 +196,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
-                        android:layout_width="75dp"
-                        android:layout_height="40dp"
+                        android:layout_width="75sp"
+                        android:layout_height="40sp"
                         android:id="@+id/creator_attribute_cha_score" />
                 </LinearLayout>
             </LinearLayout>
@@ -209,14 +205,14 @@
                 Skills
             -->
             <TableLayout
-                android:paddingStart="10dp">
+                android:paddingStart="10sp">
                 <TableRow>
                     <TextView
                         android:text="Skills"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="5dp"
+                        android:paddingBottom="5sp"
                         />
                     <android.support.v4.widget.Space />
                 </TableRow>
@@ -227,94 +223,94 @@
                         <TextView
                             android:id="@+id/creator_skills_acrobatics"
                             android:text="Acrobatics"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_animalhandling"
                             android:text="Animal Handling"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_arcana"
                             android:text="Arcana"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_athletics"
                             android:text="Athletics"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_deception"
                             android:text="Deception"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_history"
                             android:text="History"
                             
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_insight"
                             android:text="Insight"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_intimidation"
                             android:text="Intimidation"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_investigation"
                             android:text="Investigation"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_medicine"
                             android:text="Medicine"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_nature"
                             android:text="Nature"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_perception"
                             android:text="Perception"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_performance"
                             android:text="Performance"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_persuasion"
                             android:text="Persuasion"
                             
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_religion"
                             android:text="Religion"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_sleightofhand"
                             android:text="Sleight of Hand"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_stealth"
                             android:text="Stealth"
-                            android:layout_width="110dp"
+                            android:layout_width="110sp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/creator_skills_survival"
                                 android:text="Survival"
-                                android:layout_width="110dp"
+                                android:layout_width="110sp"
                                 android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
@@ -327,7 +323,7 @@
                 </TableRow>
             </TableLayout>
             <TableLayout
-                android:paddingStart="10dp">
+                android:paddingStart="10sp"
                 android:orientation="vertical">
                 <TableRow>
                     <TextView
@@ -345,5 +341,4 @@
                 </TableRow>
             </TableLayout>
         </TableRow>
-    </TableLayout>
-</LinearLayout>
+</TableLayout>

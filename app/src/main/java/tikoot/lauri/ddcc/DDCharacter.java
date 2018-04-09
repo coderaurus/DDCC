@@ -2,6 +2,8 @@ package tikoot.lauri.ddcc;
 
 import android.util.Log;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,34 +13,50 @@ import java.util.List;
  * DDCharacter stores all the necessary information of a created character.
  */
 
-public class DDCharacter {
+public class DDCharacter implements Serializable {
 
-    private String characterClass;
-    private String race;
-    private String background;
-    private String alignment;
+    public String characterClass;
+    public String race;
+    public String background;
+    public String alignment;
 
-    private List<String> languages;
+    public List<String> languages;
 
-    int level;
-    int proficiency;
-    int health;
-    int hitDie;
+    public int level;
+    public int proficiency;
+    public int health;
+    public int hitDie;
 
     // [cell 1] + [cell 2]
-    int [][] attributes;        // attribute score + modifier
+    public int [][] attributes;        // attribute score + modifier
 
-    int [][] attributeSaves;    // modfiers + proficiency
-    int [][] skills;            // modifier + proficiency
+    public int [][] attributeSaves;    // modfiers + proficiency
+    public int [][] skills;            // modifier + proficiency
 
     public DDCharacter() {
+        characterClass = "";
+        race = "";
+        background = "";
+        alignment = "";
+
+        level = 0;
+        proficiency = 0;
+        health = 0;
+        hitDie = 0;
+
+        attributes = new int[6][2];
+        attributeSaves = new int[6][2];
+        skills = new int[18][2];
+        languages = new ArrayList<>();
+
         setLevel(1);
         randomizeAttributes();
         randomizeRace();
-        randommizeCharacterClass();
+        randomizeCharacterClass();
+        randomizeBackground();
         applySkillProficiencies();
         setHealth(getLevel());
-        Log.i("DDCharacter", "Character created! \n" + this.toString());
+        randomizeAlignment();
     }
 
     public int getHealth() {
@@ -117,7 +135,7 @@ public class DDCharacter {
         return characterClass;
     }
 
-    public void randommizeCharacterClass(){
+    public void randomizeCharacterClass(){
         switch (DDCC_Utils.randomInt(12)){
             case 1:
                 setCharacterClass("Barbarian");
@@ -362,6 +380,50 @@ public class DDCharacter {
         return background;
     }
 
+    public void randomizeBackground() {
+        switch (DDCC_Utils.randomInt(13)){
+            case 1:
+                setBackground("Acolyte");
+                break;
+            case 2:
+                setBackground("Charlatan");
+                break;
+            case 3:
+                setBackground("Criminal");
+                break;
+            case 4:
+                setBackground("Entertainter");
+                break;
+            case 5:
+                setBackground("Folk Hero");
+                break;
+            case 6:
+                setBackground("Guild Artisan");
+                break;
+            case 7:
+                setBackground("Hermit");
+                break;
+            case 8:
+                setBackground("Noble");
+                break;
+            case 9:
+                setBackground("Outlander");
+                break;
+            case 10:
+                setBackground("Sage");
+                break;
+            case 11:
+                setBackground("Sailor");
+                break;
+            case 12:
+                setBackground("Soldier");
+                break;
+            case 13:
+                setBackground("Urchin");
+                break;
+        }
+    }
+
     public void setBackground(String background) {
         this.background = background;
         switch(background) {
@@ -417,6 +479,40 @@ public class DDCharacter {
     public String getAlignment() {
         return alignment;
     }
+    
+    public void randomizeAlignment(){
+        switch (DDCC_Utils.randomInt(9)){
+           case 1:
+               setAlignment("Lawful Good");
+               break;
+           case 2:
+                setAlignment("Neutral Good");
+                break;
+            case 3:
+                setAlignment("Chaotic Good");
+                break;
+            case 4:
+                setAlignment("Lawful Evil");
+                break;
+            case 5:
+                setAlignment("Neutral Evil");
+                break;
+            case 6:
+                setAlignment("Chaotic Evil");
+                break;
+            case 7:
+                setAlignment("Lawful Neutral");
+                break;
+            case 8:
+                setAlignment("Neutral");
+                break;
+            case 9:
+                setAlignment("Chaotic Neutral");
+                break;
+            default:
+                break;
+        }
+    }
 
     public void setAlignment(String alignment) {
         this.alignment = alignment;
@@ -458,6 +554,10 @@ public class DDCharacter {
 
     public int[][] getAttributes() {
         return attributes;
+    }
+
+    public int getAttribute(int i){
+        return attributes[i][0];
     }
 
     public void setAttributes(int[][] attributes) {
@@ -655,7 +755,7 @@ public class DDCharacter {
         this.skills = skills;
     }
 
-    private void setSkills(String attr) {
+    public void setSkills(String attr) {
         attr = attr.toLowerCase();
         switch (attr){
             case "str":
@@ -864,18 +964,18 @@ public class DDCharacter {
     @Override
     public String toString() {
         return "DDCharacter{" +
-                "characterClass='" + characterClass + '\'' +
-                ", race='" + race + '\'' +
-                ", background='" + background + '\'' +
-                ", alignment='" + alignment + '\'' +
-                ", languages=" + languages +
-                ", level=" + level +
-                ", proficiency=" + proficiency +
-                ", health=" + health +
-                ", hitDie=" + hitDie +
-                ", attributes=" + Arrays.toString(attributes) +
-                ", attributeSaves=" + Arrays.toString(attributeSaves) +
-                ", skills=" + Arrays.toString(skills) +
+                "\n\tcharacterClass='" + characterClass + '\'' +
+                ",\n\t race='" + race + '\'' +
+                ",\n\t background='" + background + '\'' +
+                ",\n\t alignment='" + alignment + '\'' +
+                ",\n\t languages=" + languages.toArray().toString() +
+                ",\n\t level=" + level +
+                ",\n\t proficiency=" + proficiency +
+                ",\n\t health=" + health +
+                ",\n\t hitDie=" + hitDie +
+                ",\n\t attributes=" + Arrays.toString(attributes) +
+                ",\n\t attributeSaves=" + Arrays.toString(attributeSaves) +
+                ",\n\t skills=" + Arrays.toString(skills) +
                 '}';
     }
 }

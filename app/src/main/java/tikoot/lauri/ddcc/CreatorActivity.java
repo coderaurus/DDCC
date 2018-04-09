@@ -2,24 +2,31 @@ package tikoot.lauri.ddcc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class CreatorActivity extends AppCompatActivity {
+    //TODO: All the Spinners need something to select the randomized value
     private Spinner classes, levels, races, backgrounds, alignments;
     private Spinner [] attributes;
+
     private int [] attributeIds;
     private int [] attributeModifiers;
     private int [] skills;
+
     private TextView health;
-    private TextView skillsText;
+
+    private DDCharacter character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        character = (DDCharacter) getIntent().getSerializableExtra("character");
+        Log.i("CreatorActivity",character.toString());
 
         attributes = new Spinner[6];
         attributeIds = new int[]{
@@ -39,33 +46,39 @@ public class CreatorActivity extends AppCompatActivity {
                 R.array.classes, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         classes.setAdapter(adapter);
+        classes.setSelection(findSelection(classes.getAdapter(), character.getCharacterClass()));
 
         levels = (Spinner) findViewById(R.id.creator_level);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.levels, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         levels.setAdapter(adapter);
+        levels.setSelection(findSelection(levels.getAdapter(), character.getLevel()));
 
         races = (Spinner) findViewById(R.id.creator_race);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.races, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         races.setAdapter(adapter);
-
-        health = (TextView) findViewById(R.id.creator_health);
-        health.setText("1");
+        races.setSelection(findSelection(races.getAdapter(), character.getRace()));
 
         backgrounds = (Spinner) findViewById(R.id.creator_background);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.backgrounds, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         backgrounds.setAdapter(adapter);
+        backgrounds.setSelection(findSelection(backgrounds.getAdapter(),
+                character.getBackground()));
 
         alignments = (Spinner) findViewById(R.id.creator_alignment);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.alignments, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         alignments.setAdapter(adapter);
+        alignments.setSelection(findSelection(alignments.getAdapter(), character.getAlignment()));
+
+        health = (TextView) findViewById(R.id.creator_health);
+        health.setText(getHealthText());
 
         // Set attributes
         for(int i=0; i < attributeIds.length; i++) {
@@ -74,10 +87,32 @@ public class CreatorActivity extends AppCompatActivity {
                     R.array.attributes, R.layout.support_simple_spinner_dropdown_item);
             adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             attributes[i].setAdapter(adapter);
+            attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
+                    character.getAttribute(i)));
             //TODO: update modifier
         }
+    }
 
-        //TODO: update skills <-- requires attribute modifiers
-        //TODO: print skills
+    public int findSelection(SpinnerAdapter adapter, String wanted){
+        for(int i=0; i<adapter.getCount(); i++){
+            if(adapter.getItem(i).equals(wanted)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int findSelection(SpinnerAdapter adapter, int wanted){
+        for(int i=0; i<adapter.getCount(); i++){
+            if(adapter.getItem(i).equals(wanted)){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    public String getHealthText() {
+        return character.getHealth() + " (d" + character.getHitDie() + ")";
     }
 }

@@ -43,7 +43,16 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         skills = new int[18];
 
         setContentView(R.layout.activity_creator);
+        initializeSpinners();
+        setHealth();
+    }
 
+    public void setHealth(){
+        health = (TextView) findViewById(R.id.creator_health);
+        health.setText(getHealthString());
+    }
+
+    public void initializeSpinners(){
         classes = (Spinner) findViewById(R.id.creator_class);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.classes, R.layout.support_simple_spinner_dropdown_item);
@@ -56,7 +65,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 R.array.levels, R.layout.support_simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         levels.setAdapter(adapter);
-        levels.setSelection(findSelection(levels.getAdapter(), character.getLevel()));
+        levels.setSelection(findSelection(levels.getAdapter(), String.valueOf(character.getLevel())));
         levels.setOnItemSelectedListener(this);
 
         races = (Spinner) findViewById(R.id.creator_race);
@@ -81,9 +90,10 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         alignments.setAdapter(adapter);
         alignments.setSelection(findSelection(alignments.getAdapter(), character.getAlignment()));
 
-        health = (TextView) findViewById(R.id.creator_health);
-        health.setText(getHealthText());
+        initializeAttributeSpinners(adapter);
+    }
 
+    public void initializeAttributeSpinners(ArrayAdapter<CharSequence> adapter) {
         // Set attributes
         for(int i=0; i < attributeIds.length; i++) {
             attributes[i] = (Spinner) findViewById(attributeIds[i]);
@@ -92,7 +102,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             attributes[i].setAdapter(adapter);
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
-                    character.getAttribute(i)));
+                    String.valueOf(i)));
             //TODO: update modifier
         }
     }
@@ -106,17 +116,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         return -1;
     }
 
-    public int findSelection(SpinnerAdapter adapter, int wanted){
-        for(int i=0; i<adapter.getCount(); i++){
-            if(adapter.getItem(i).equals(wanted)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-
-    public String getHealthText() {
+    public String getHealthString() {
         return character.getHealth() + " (d" + character.getHitDie() + ")";
     }
 
@@ -128,7 +128,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 int newLevel = Integer.parseInt(parent.getItemAtPosition(pos).toString());
                 character.setHealth(newLevel);
                 character.setLevel(newLevel);
-                health.setText(getHealthText());
+                health.setText(getHealthString());
                 break;
         }
     }

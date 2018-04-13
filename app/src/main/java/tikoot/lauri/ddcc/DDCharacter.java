@@ -27,8 +27,7 @@ public class DDCharacter implements Serializable {
     public int health;
     public int hitDie;
 
-    // [cell 1] + [cell 2]
-    public int [][] attributes;        // attribute score + modifier
+    public int [][] attributes;        // skill:attribute score + modifier
 
     public int [][] attributeSaves;    // modfiers + proficiency
     public int [][] skills;            // modifier + proficiency

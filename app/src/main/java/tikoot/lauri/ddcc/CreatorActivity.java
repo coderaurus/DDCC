@@ -1,15 +1,17 @@
 package tikoot.lauri.ddcc;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //TODO: All the Spinners need something to select the randomized value
@@ -17,10 +19,10 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     private Spinner [] attributes;
 
     private int [] attributeIds;
-    private int [] attributeModifiers;
-    private int [] skills;
+    private int [][] skills;
 
     private TextView health;
+    private TextView languages;
 
     private DDCharacter character;
 
@@ -39,12 +41,74 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 R.id.creator_attribute_int_score,
                 R.id.creator_attribute_wis_score,
                 R.id.creator_attribute_cha_score };
-        attributeModifiers = new int[6];
-        skills = new int[18];
 
         setContentView(R.layout.activity_creator);
         initializeSpinners();
         setHealth();
+
+        intializeSkills();
+        updateSkills();
+
+        languages = (TextView) findViewById(R.id.languages);
+        updateLanguages();
+    }
+
+    private void intializeSkills() {
+        skills = new int[][]{
+                new int[]{R.id.creator_skills_acrobatics,        R.string.acrobatics},
+                new int[]{R.id.creator_skills_animalhandling,    R.string.animalHandling},
+                new int[]{R.id.creator_skills_arcana,            R.string.arcana},
+                new int[]{R.id.creator_skills_athletics,         R.string.athletics},
+                new int[]{R.id.creator_skills_deception,         R.string.deception},
+                new int[]{R.id.creator_skills_history,           R.string.history},
+                new int[]{R.id.creator_skills_insight,           R.string.insight},
+                new int[]{R.id.creator_skills_intimidation,      R.string.insight},
+                new int[]{R.id.creator_skills_investigation,     R.string.investigation},
+                new int[]{R.id.creator_skills_medicine,          R.string.medicine},
+                new int[]{R.id.creator_skills_nature,            R.string.medicine},
+                new int[]{R.id.creator_skills_perception,        R.string.perception},
+                new int[]{R.id.creator_skills_performance,       R.string.performance},
+                new int[]{R.id.creator_skills_persuasion,        R.string.persuasion},
+                new int[]{R.id.creator_skills_religion,          R.string.religion},
+                new int[]{R.id.creator_skills_sleightofhand,     R.string.sleightOfHand},
+                new int[]{R.id.creator_skills_stealth,           R.string.stealth},
+                new int[]{R.id.creator_skills_survival,          R.string.survival}
+        };
+    }
+
+    private void updateLanguages() {
+        String text = "";
+        for(String lang : character.getLanguages()){
+            text += lang + "\n";
+        }
+        languages.setText(text);
+    }
+
+    private void updateSkills() {
+        for(int i=0; i<skills.length; i++){
+            TextView textView = (TextView) findViewById(skills[i][0]);
+
+            String text = character.getSkill(i)[0] > -1 ? "(+" + character.getSkill(i)[0] + ")" :
+                    "(-" + character.getSkill(i)[0] + ")";
+            text += " " + getResources().getString(skills[i][1]);
+            textView.setText(text);
+
+            if(character.getSkill(i)[1] == 1){
+                boldText(textView, true);
+            }
+            else {
+                boldText(textView, false);
+            }
+        }
+    }
+
+    private void boldText(TextView skill, boolean proficient) {
+        if(proficient){
+            skill.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL), 1);
+        }
+        else {
+            skill.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL), 0);
+        }
     }
 
     public void setHealth(){
@@ -102,7 +166,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
             attributes[i].setAdapter(adapter);
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
-                    String.valueOf(i)));
+                    String.valueOf(character.getAttribute(i))));
             //TODO: update modifier
         }
     }

@@ -4,13 +4,12 @@ import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by LaglessLlama on 26.3.18.
  *
- * DDCharacter stores all the necessary information of a created character.
+ * DDCharacter stores and handles all the necessary information of a created character.
  */
 
 public class DDCharacter implements Serializable {
@@ -96,9 +95,15 @@ public class DDCharacter implements Serializable {
     }
 
     public void addLanguage(String... langs) {
-        for(String lang : langs){
-            if(!languages.contains(lang)) {
-                languages.add(lang);
+        Log.i("DDCharacter", "Langs: " + langs);
+        if(langs.length > 0) {
+            Log.i("DDCharacter", "Okay, langs is not empty");
+            for(String lang : langs){
+                Log.i("DDCharacter", "Current lang to be added: " + lang);
+                if(!languages.contains(lang)) {
+                    Log.i("DDCharacter", "Okay, no duplicates. Adding language...");
+                    languages.add(lang);
+                }
             }
         }
     }
@@ -756,6 +761,10 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
+    }
+
+    public int[] getSkill(int i){
+        return skills[i];
     }
 
     public int[][] getSkills() {

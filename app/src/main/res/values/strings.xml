@@ -91,24 +91,23 @@
         <item name="17">17</item>
         <item name="18">18</item>
     </string-array>
-    <string-array name="skills">
-        <item name="acrobatics">0</item>
-        <item name="animalHandling">0</item>
-        <item name="arcana">0</item>
-        <item name="athletics">0</item>
-        <item name="deception">0</item>
-        <item name="history">0</item>
-        <item name="insight">0</item>
-        <item name="intimidation">0</item>
-        <item name="investigation">0</item>
-        <item name="medicine">0</item>
-        <item name="nature">0</item>
-        <item name="perception">0</item>
-        <item name="performance">0</item>
-        <item name="persuasion">0</item>
-        <item name="religion">0</item>
-        <item name="sleightOfHand">0</item>
-        <item name="stealth">0</item>
-        <item name="survival">0</item>
-    </string-array>
+
+    <string name="acrobatics">Acrobatics</string>
+    <string name="animalHandling">Animmal Handling</string>
+    <string name="arcana">Arcana</string>
+    <string name="athletics">Athletics</string>
+    <string name="deception">Deception</string>
+    <string name="history">History</string>
+    <string name="insight">Insight</string>
+    <string name="intimidation">Intimidation</string>
+    <string name="investigation">Investigation</string>
+    <string name="medicine">Medicine</string>
+    <string name="nature">Nature</string>
+    <string name="perception">Perception</string>
+    <string name="performance">Performance</string>
+    <string name="persuasion">Persuasion</string>
+    <string name="religion">Religion</string>
+    <string name="sleightOfHand">Sleight of Hand</string>
+    <string name="stealth">Stealth</string>
+    <string name="survival">Survival</string>
 </resources>

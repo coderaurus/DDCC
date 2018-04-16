@@ -113,7 +113,7 @@ public class DDCharacter implements Serializable {
             String lang = randomLanguage();
             if(!languages.contains(lang)){
                 languages.add(lang);
-                i++;
+                i++;                        // only increment index if language was added
             }
         }
     }
@@ -299,80 +299,39 @@ public class DDCharacter implements Serializable {
     // setRace() doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
     public void setRace(String race) {
         // Reset current racial attribute bonuses
-        switch(this.race){
-            case "Dragonborn":
-                addToAttribute("str", -2);
-                addToAttribute("cha", -2);
-                addLanguage("Common", "Draconic");
-                break;
-            case "Dwarf":
-                addToAttribute("con", -2);
-                addLanguage("Common", "Dwarvish");
-                break;
-            case "Elf":
-                addToAttribute("dex", -2);
-                addLanguage("Common", "Elvish");
-                break;
-            case "Gnome":
-                addToAttribute("int", -2);
-                addLanguage("Common", "Gnomish");
-                break;
-            case "Half-Elf":
-                addToAttribute("cha", -2);
-                addLanguage("Common", "Elvish");
-                addRandomLanguages(1);
-                break;
-            case "Halfling":
-                addToAttribute("dex", -2);
-                addLanguage("Common", "Halfling");
-                break;
-            case "Half-Orc":
-                addToAttribute("str", -2);
-                addToAttribute("con", -1);
-                addLanguage("Common", "Orc");
-                break;
-            case "Human":
-                addToAttribute("str", -1);
-                addToAttribute("dex", -1);
-                addToAttribute("con", -1);
-                addToAttribute("int", -1);
-                addToAttribute("wis", -1);
-                addToAttribute("cha", -1);
-                addLanguage("Common");
-                addRandomLanguages(1);
-                break;
-            case "Tiefling":
-                addToAttribute("int", -1);
-                addToAttribute("cha", -2);
-                addLanguage("Common", "Infernal");
-                break;
-            default:
-                break;
-        }
+        resetRace();
         // Set new race
         switch(race){
             case "Dragonborn":
                 addToAttribute("str", 2);
                 addToAttribute("cha", 2);
+                addLanguage("Common", "Draconic");
                 break;
             case "Dwarf":
                 addToAttribute("con", 2);
+                addLanguage("Common", "Dwarvish");
                 break;
             case "Elf":
                 addToAttribute("dex", 2);
+                addLanguage("Common", "Elvish");
                 break;
             case "Gnome":
                 addToAttribute("int", 2);
+                addLanguage("Common", "Gnomish");
                 break;
-            case "HalfElf":
+            case "Half-Elf":
                 addToAttribute("cha", 2);
+                addLanguage("Common", "Elvish");
+                addRandomLanguages(1);
                 break;
             case "Halfling":
                 addToAttribute("dex", 2);
+                addLanguage("Common", "Halfling");
                 break;
-            case "HalfOrc":
+            case "Half-Orc":
                 addToAttribute("str", 2);
                 addToAttribute("con", 1);
+                addLanguage("Common", "Orc");
                 break;
             case "Human":
                 addToAttribute("str", 1);
@@ -381,15 +340,60 @@ public class DDCharacter implements Serializable {
                 addToAttribute("int", 1);
                 addToAttribute("wis", 1);
                 addToAttribute("cha", 1);
+                addLanguage("Common");
+                addRandomLanguages(1);
                 break;
             case "Tiefling":
                 addToAttribute("int", 1);
                 addToAttribute("cha", 2);
+                addLanguage("Common", "Infernal");
                 break;
             default:
                 break;
         }
         this.race = race;
+    }
+
+    private void resetRace() {
+        switch(this.race){
+            case "Dragonborn":
+                addToAttribute("str", -2);
+                addToAttribute("cha", -2);
+                break;
+            case "Dwarf":
+                addToAttribute("con", -2);
+                break;
+            case "Elf":
+                addToAttribute("dex", -2);
+                break;
+            case "Gnome":
+                addToAttribute("int", -2);
+                break;
+            case "Half-Elf":
+                addToAttribute("cha", -2);
+                break;
+            case "Halfling":
+                addToAttribute("dex", -2);
+                break;
+            case "Half-Orc":
+                addToAttribute("str", -2);
+                addToAttribute("con", -1);
+                break;
+            case "Human":
+                addToAttribute("str", -1);
+                addToAttribute("dex", -1);
+                addToAttribute("con", -1);
+                addToAttribute("int", -1);
+                addToAttribute("wis", -1);
+                addToAttribute("cha", -1);
+                break;
+            case "Tiefling":
+                addToAttribute("int", -1);
+                addToAttribute("cha", -2);
+                break;
+            default:
+                break;
+        }
     }
 
     public String getBackground() {

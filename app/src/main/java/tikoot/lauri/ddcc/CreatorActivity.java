@@ -130,6 +130,38 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 character.setLevel(newLevel);
                 health.setText(getHealthString());
                 break;
+            case R.id.creator_class:
+                character.setCharacterClass(parent.getItemAtPosition(pos).toString());
+                break;
+            case R.id.creator_race:
+                character.setRace(parent.getItemAtPosition(pos).toString());
+                break;
+            case R.id.creator_background:
+                character.setBackground(parent.getItemAtPosition(pos).toString());
+                break;
+            case R.id.creator_alignment:
+                character.setAlignment(parent.getItemAtPosition(pos).toString());
+                break;
+            case R.id.creator_attribute_str_score:
+                character.setAttribute("str", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            case R.id.creator_attribute_dex_score:
+                character.setAttribute("dex", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            case R.id.creator_attribute_con_score:
+                character.setAttribute("con", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            case R.id.creator_attribute_int_score:
+                character.setAttribute("int", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            case R.id.creator_attribute_wis_score:
+                character.setAttribute("wis", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            case R.id.creator_attribute_cha_score:
+                character.setAttribute("cha", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                break;
+            default:
+                break;
         }
     }
 

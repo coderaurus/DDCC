@@ -54,4 +54,21 @@ public class DDCC_Utils {
         }
         return result;
     }
+
+    public static String printList(int [][] list){
+        String str = "{";
+        int i=0;
+
+        for(int [] item : list) {
+            str += "[" + item[0] + ", " + item[1] + "]";
+            if(i != list.length - 1){
+                str += ", ";
+            }
+            i++;
+        }
+
+        str += "}";
+
+        return str;
+    }
 }

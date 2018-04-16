@@ -979,14 +979,14 @@ public class DDCharacter implements Serializable {
                 ",\n\t race='" + race + '\'' +
                 ",\n\t background='" + background + '\'' +
                 ",\n\t alignment='" + alignment + '\'' +
-                ",\n\t languages=" + languages.toArray().toString() +
+                ",\n\t languages=" + languages +
                 ",\n\t level=" + level +
                 ",\n\t proficiency=" + proficiency +
                 ",\n\t health=" + health +
                 ",\n\t hitDie=" + hitDie +
-                ",\n\t attributes=" + Arrays.toString(attributes) +
-                ",\n\t attributeSaves=" + Arrays.toString(attributeSaves) +
-                ",\n\t skills=" + Arrays.toString(skills) +
+                ",\n\t attributes=" + DDCC_Utils.printList(attributes) +
+                ",\n\t attributeSaves=" + DDCC_Utils.printList(attributeSaves) +
+                ",\n\t skills=" + DDCC_Utils.printList(skills) +
                 '}';
     }
 }

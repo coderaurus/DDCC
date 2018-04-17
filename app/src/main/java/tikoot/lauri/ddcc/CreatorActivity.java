@@ -96,6 +96,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             String text = character.getSkill(i)[0] > -1 ? "(+" + character.getSkill(i)[0] + ")" :
                     "(-" + character.getSkill(i)[0] + ")";
             text += " " + getResources().getString(skills[i][1]);
+
             textView.setText(text);
 
             if(character.getSkill(i)[1] == 1){
@@ -104,6 +105,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             else {
                 boldText(textView, false);
             }
+            textView.invalidate();
         }
     }
 
@@ -128,6 +130,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         classes.setAdapter(adapter);
         classes.setSelection(findSelection(classes.getAdapter(), character.getCharacterClass()));
+        classes.setOnItemSelectedListener(this);
 
         levels = (Spinner) findViewById(R.id.creator_level);
         adapter = ArrayAdapter.createFromResource(this,
@@ -143,6 +146,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         races.setAdapter(adapter);
         races.setSelection(findSelection(races.getAdapter(), character.getRace()));
+        races.setOnItemSelectedListener(this);
 
         backgrounds = (Spinner) findViewById(R.id.creator_background);
         adapter = ArrayAdapter.createFromResource(this,
@@ -151,6 +155,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         backgrounds.setAdapter(adapter);
         backgrounds.setSelection(findSelection(backgrounds.getAdapter(),
                 character.getBackground()));
+        backgrounds.setOnItemSelectedListener(this);
 
         alignments = (Spinner) findViewById(R.id.creator_alignment);
         adapter = ArrayAdapter.createFromResource(this,
@@ -158,6 +163,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         alignments.setAdapter(adapter);
         alignments.setSelection(findSelection(alignments.getAdapter(), character.getAlignment()));
+        alignments.setOnItemSelectedListener(this);
 
         initializeAttributeSpinners(adapter);
     }
@@ -172,6 +178,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             attributes[i].setAdapter(adapter);
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
                     String.valueOf(character.getAttribute(i))));
+            attributes[i].setOnItemSelectedListener(this);
             //TODO: update modifier
         }
     }
@@ -191,11 +198,13 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
     private void updateHealth(){
         health.setText(getHealthString());
+        health.invalidate();
     }
 
     //TODO: Updates don't work. UI is not updated...
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
+        Log.d("CreatorActivity--", parent.getItemAtPosition(pos).toString());
         switch (parent.getId()){
             case R.id.creator_level:
                 int newLevel = Integer.parseInt(parent.getItemAtPosition(pos).toString());

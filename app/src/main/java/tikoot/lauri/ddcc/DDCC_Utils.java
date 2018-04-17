@@ -81,8 +81,9 @@ public class DDCC_Utils {
         }
         else if(options.length == 2){
             // Remove options[1] amount of items starting from options[0]
-            int len = options[0] + options[1]; // Index we have to reach
-            for(int i=options[0]; i < len; i++){
+            int len = options[0] + options[1]; // Index we start from
+            if(len > list.size()) len = list.size()-1;
+            for(int i=len; i > options[0]; i--){
                 list.remove(i);
             }
         }

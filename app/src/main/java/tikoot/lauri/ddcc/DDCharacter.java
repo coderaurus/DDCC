@@ -31,6 +31,8 @@ public class DDCharacter implements Serializable {
     private int [][] attributeSaves;    // modfiers + proficiency
     private int [][] skills;            // modifier + proficiency
 
+    private boolean initialized = false;
+
     public DDCharacter() {
         characterClass = "";
         race = "";
@@ -52,9 +54,11 @@ public class DDCharacter implements Serializable {
         randomizeRace();
         randomizeCharacterClass();
         randomizeBackground();
+        randomizeSkillsByClass(characterClass);
         applySkillProficiencies();
         setHealth(getLevel());
         randomizeAlignment();
+        initialized = true;
     }
 
     public int getHealth() {
@@ -193,6 +197,8 @@ public class DDCharacter implements Serializable {
     }
 
     public void setCharacterClass(String characterClass) {
+        if(initialized) resetCharacterClass();
+
         switch(characterClass) {
             case "Barbarian":
                 hitDie = 12;
@@ -260,6 +266,62 @@ public class DDCharacter implements Serializable {
         this.characterClass = characterClass;
     }
 
+    private void resetCharacterClass() {
+        hitDie = 0;
+        switch(this.characterClass) {
+            case "Barbarian":
+                setAttributeSave("str", false);
+                setAttributeSave("con", false);
+                break;
+            case "Bard":
+                setAttributeSave("dex", false);
+                setAttributeSave("cha", false);
+                break;
+            case "Cleric":
+                setAttributeSave("wis", false);
+                setAttributeSave("cha", false);
+                break;
+            case "Druid":
+                setAttributeSave("int", false);
+                setAttributeSave("wis", false);
+                break;
+            case "Fighter":
+                setAttributeSave("str", false);
+                setAttributeSave("con", false);
+                break;
+            case "Monk":
+                setAttributeSave("str", false);
+                setAttributeSave("dex", false);
+                break;
+            case "Paladin":
+                setAttributeSave("wis", false);
+                setAttributeSave("cha", false);
+                break;
+            case "Ranger":
+                setAttributeSave("str", false);
+                setAttributeSave("dex", false);
+                break;
+            case "Rogue":
+                setAttributeSave("dex", false);
+                setAttributeSave("int", false);
+                break;
+            case "Sorcerer":
+                setAttributeSave("con", false);
+                setAttributeSave("cha", false);
+                break;
+            case "Warlock":
+                setAttributeSave("wis", false);
+                setAttributeSave("cha", false);
+                break;
+            case "Wizard":
+                setAttributeSave("int", false);
+                setAttributeSave("wis", false);
+                break;
+            default:
+                break;
+        }
+    }
+
     public String getRace() {
         return race;
     }
@@ -296,10 +358,11 @@ public class DDCharacter implements Serializable {
         }
     }
 
-    // setRace() doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
+    
     public void setRace(String race) {
+        // Method doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
         // Reset current racial attribute bonuses
-        resetRace();
+        if(initialized) resetRace();
         // Set new race
         switch(race){
             case "Dragonborn":
@@ -394,6 +457,8 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
+        // Remove the two racial langauges
+        DDCC_Utils.removeFromList(languages, 0, 2);
     }
 
     public String getBackground() {
@@ -445,8 +510,7 @@ public class DDCharacter implements Serializable {
     }
 
     public void setBackground(String background) {
-        // Languages given by background are 3rd, 4th... languages (first 2 are from race)
-        resetBackground();
+        if(initialized) resetBackground();
         this.background = background;
         switch(background) {
             case "Acolyte":
@@ -552,7 +616,11 @@ public class DDCharacter implements Serializable {
     public String getAlignment() {
         return alignment;
     }
-    
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
+
     public void randomizeAlignment(){
         switch (DDCC_Utils.randomInt(9)){
            case 1:
@@ -585,10 +653,6 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
-    }
-
-    public void setAlignment(String alignment) {
-        this.alignment = alignment;
     }
 
     public int getLevel() {
@@ -868,10 +932,13 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
+        applySkillProficiencies();
     }
 
-    public void setSkillProficiency(int index, boolean toggle){
-        skills[index][1] = toggle ? 1 : 0;
+    public void setSkillProficiency(boolean toggle, int... index){
+        for(int i : index){
+            skills[i][1] = toggle ? 1 : 0;
+        }
     }
 
     public void setSkillProficiency(boolean toggle, String... skills){
@@ -958,7 +1025,7 @@ public class DDCharacter implements Serializable {
         }
     }
 
-    public int [] randomizeSkillsByClass(String cls){
+    public void randomizeSkillsByClass(String cls){
         int [] skillPool;
 
         switch (cls){
@@ -1015,14 +1082,15 @@ public class DDCharacter implements Serializable {
                 break;
         }
 
-        return skillPool;
+        setSkillProficiency(true, skillPool);
     }
 
     public int[] chooseSkills(int amount, int[] skillPool) {
         int[] chosenSkills = new int[amount];
         for(int i =0; i<chosenSkills.length; i++) {
-            boolean isTaken = false;
+            boolean isTaken = true;
             while(isTaken){
+                isTaken = false;
                 int randomSkill = DDCC_Utils.randomInt(skillPool.length)-1;
                 for(int skill : chosenSkills){
                     if(skill == randomSkill){

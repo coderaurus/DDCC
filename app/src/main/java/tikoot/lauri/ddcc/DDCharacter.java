@@ -14,22 +14,22 @@ import java.util.List;
 
 public class DDCharacter implements Serializable {
 
-    public String characterClass;
-    public String race;
-    public String background;
-    public String alignment;
+    private String characterClass;
+    private String race;
+    private String background;
+    private String alignment;
 
-    public List<String> languages;
+    private List<String> languages;
 
-    public int level;
-    public int proficiency;
-    public int health;
-    public int hitDie;
+    private int level;
+    private int proficiency;
+    private int health;
+    private int hitDie;
 
-    public int [][] attributes;        // skill:attribute score + modifier
+    private int [][] attributes;        // skill:attribute score + modifier
 
-    public int [][] attributeSaves;    // modfiers + proficiency
-    public int [][] skills;            // modifier + proficiency
+    private int [][] attributeSaves;    // modfiers + proficiency
+    private int [][] skills;            // modifier + proficiency
 
     public DDCharacter() {
         characterClass = "";
@@ -445,6 +445,8 @@ public class DDCharacter implements Serializable {
     }
 
     public void setBackground(String background) {
+        // Languages given by background are 3rd, 4th... languages (first 2 are from race)
+        resetBackground();
         this.background = background;
         switch(background) {
             case "Acolyte":
@@ -494,6 +496,57 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }        
+    }
+    
+    public void resetBackground(){
+        switch(this.background) {
+            case "Acolyte":
+                setSkillProficiency(false, "Insight", "Religion");
+                DDCC_Utils.removeFromList(languages, 2); // Leaves the languages from race
+                break;
+            case "Charlatan":
+                setSkillProficiency(false, "Deception", "Sleight_of_Hand");
+                break;
+            case "Criminal":
+                setSkillProficiency(false, "Deception", "Stealth");
+                break;
+            case "Entertainer":
+                setSkillProficiency(false,  "Acrobatics", "Performance");
+                break;
+            case "Folk Hero":
+                setSkillProficiency(false,  "Animal_Handling", "Survival");
+                break;
+            case "Guild Artisan":
+                setSkillProficiency(false,  "Insight", "Persuasion");
+                DDCC_Utils.removeFromList(languages, 2);
+                break;
+            case "Hermit":
+                setSkillProficiency(false,  "Medicine", "Religion");
+                break;
+            case "Noble":
+                setSkillProficiency(false,  "History", "Persuasion");
+                DDCC_Utils.removeFromList(languages, 2);
+                break;
+            case "Outlander":
+                setSkillProficiency(false,  "Athletics", "Survival");
+                DDCC_Utils.removeFromList(languages, 2);
+                break;
+            case "Sage":
+                setSkillProficiency(false,  "Arcana", "History");
+                DDCC_Utils.removeFromList(languages, 2);
+                break;
+            case "Sailor":
+                setSkillProficiency(false,  "Athletics", "Perception");
+                break;
+            case "Soldier":
+                setSkillProficiency(false,  "Athletics", "Intimidation");
+                break;
+            case "Urchin":
+                setSkillProficiency(false,   "Sleight_Of_Hand", "Stealth");
+                break;
+            default:
+                break;
+        }
     }
 
     public String getAlignment() {

@@ -1,5 +1,6 @@
 package tikoot.lauri.ddcc;
 
+import java.util.List;
 import java.util.Random;
 
 public class DDCC_Utils {
@@ -70,5 +71,20 @@ public class DDCC_Utils {
         str += "}";
 
         return str;
+    }
+
+    public static void removeFromList(List<String> list, int... options) {
+        if(options.length == 1){
+            // We can just make a sublist and replace the original list with it
+            List<String> newList = list.subList(list.indexOf(list.get(0)), list.indexOf(list.get(options[0])));
+            list = newList;
+        }
+        else if(options.length == 2){
+            // Remove options[1] amount of items starting from options[0]
+            int len = options[0] + options[1]; // Index we have to reach
+            for(int i=options[0]; i < len; i++){
+                list.remove(i);
+            }
+        }
     }
 }

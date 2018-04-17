@@ -94,7 +94,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             TextView textView = (TextView) findViewById(skills[i][0]);
 
             String text = character.getSkill(i)[0] > -1 ? "(+" + character.getSkill(i)[0] + ")" :
-                    "(-" + character.getSkill(i)[0] + ")";
+                    "(" + character.getSkill(i)[0] + ")";
             text += " " + getResources().getString(skills[i][1]);
 
             textView.setText(text);
@@ -240,7 +240,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 break;
             case R.id.creator_attribute_con_score:
                 character.setAttribute("con", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
-                character.setHealth(character.getHealth());
+                character.setHealth(character.getLevel());
                 updateSkills();
                 updateHealth();
                 break;

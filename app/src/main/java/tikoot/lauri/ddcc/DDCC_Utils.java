@@ -74,24 +74,4 @@ public class DDCC_Utils {
 
         return str;
     }
-
-    public static void removeFromList(List<String> list, int... options) {
-        if(options.length == 1){
-            // We can just make a sublist and replace the original list with it
-            int len = options[0];
-            if(len >= list.size()) len = (len - list.size()) - (list.size() -1) -1;
-            Log.i("DDCC_Utils", "--- removeFromList(): len = " + len );
-            for(int i=options[0]; list.listIterator().hasNext(); i++){
-                list.remove(i);
-            }
-        }
-        else if(options.length == 2){
-            // Remove options[1] amount of items starting from options[0]
-            int len = options[0] + options[1]; // Index we start from
-            if(len >= list.size()) len = (len - list.size()) - (list.size() -1) -1;
-            for(int i=len; i > options[0]; i--){
-                list.remove(i);
-            }
-        }
-    }
 }

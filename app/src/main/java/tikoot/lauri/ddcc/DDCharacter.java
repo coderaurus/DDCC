@@ -19,7 +19,7 @@ public class DDCharacter implements Serializable {
     private String background;
     private String alignment;
 
-    private List<String> languages;
+    private List<List<String>> languages;
 
     private int level;
     private int proficiency;
@@ -28,7 +28,7 @@ public class DDCharacter implements Serializable {
 
     private int [][] attributes;        // skill:attribute score + modifier
 
-    private int [][] attributeSaves;    // modfiers + proficiency
+    private int [][] attributeSaves;    // modifiers + proficiency
     private int [][] skills;            // modifier + proficiency
 
     private boolean initialized = false;
@@ -48,6 +48,8 @@ public class DDCharacter implements Serializable {
         attributeSaves = new int[6][2];
         skills = new int[18][2];
         languages = new ArrayList<>();
+        languages.add(new ArrayList<String>()); // 0 is for languages provided by race
+        languages.add(new ArrayList<String>()); // 1 is for languages provided by background
 
         setLevel(1);
         randomizeAttributes();
@@ -77,34 +79,51 @@ public class DDCharacter implements Serializable {
         }
     }
 
-    public List<String> getLanguages() {
+    public List<List<String>> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(List<String> languages) {
+    public void setLanguages(List<List<String>> languages) {
         this.languages = languages;
     }
 
-    public void addLanguage(String... langs) {
-        Log.i("DDCharacter", "Langs: " + langs);
+    public void addLanguage(String side, String... langs) {
         if(langs.length > 0) {
-            Log.i("DDCharacter", "Okay, langs is not empty");
-            for(String lang : langs){
-                Log.i("DDCharacter", "Current lang to be added: " + lang);
-                if(!languages.contains(lang)) {
-                    Log.i("DDCharacter", "Okay, no duplicates. Adding language...");
-                    languages.add(lang);
+            if(side.equals("racial")) {
+                for(String lang : langs){
+                    if(languages.get(0).isEmpty() || !languages.get(0).contains(lang)) {
+                        languages.get(0).add(lang);
+                        if(languages.get(1).contains(lang)){
+                            languages.get(1).remove(lang);
+                            addRandomLanguages("other", 1);
+                        }
+                    }
+                }
+            }
+            else { // side == "other"
+                for(String lang : langs){
+                    if(languages.get(0).isEmpty() || !languages.get(1).contains(lang)) {
+                        languages.get(1).add(lang);
+                    }
                 }
             }
         }
     }
 
-    public void addRandomLanguages(int amount){
+    public void addRandomLanguages(String side, int amount){
         for(int i=0; i<amount;) {
             String lang = randomLanguage();
-            if(!languages.contains(lang)){
-                languages.add(lang);
-                i++;                        // only increment index if language was added
+            if(side.equals("racial")) {
+                if(!languages.get(0).contains(lang)){
+                    languages.get(0).add(lang);
+                    i++;                        // only increment index if language was added
+                }
+            }
+            else {
+                if(!languages.get(1).contains(lang)){
+                    languages.get(1).add(lang);
+                    i++;                        // only increment index if language was added
+                }
             }
         }
     }
@@ -355,33 +374,33 @@ public class DDCharacter implements Serializable {
             case "Dragonborn":
                 addToAttribute("str", 2);
                 addToAttribute("cha", 2);
-                addLanguage("Common", "Draconic");
+                addLanguage("racial", "Common", "Draconic");
                 break;
             case "Dwarf":
                 addToAttribute("con", 2);
-                addLanguage("Common", "Dwarvish");
+                addLanguage("racial", "Common", "Dwarvish");
                 break;
             case "Elf":
                 addToAttribute("dex", 2);
-                addLanguage("Common", "Elvish");
+                addLanguage("racial", "Common", "Elvish");
                 break;
             case "Gnome":
                 addToAttribute("int", 2);
-                addLanguage("Common", "Gnomish");
+                addLanguage("racial", "Common", "Gnomish");
                 break;
             case "Half-Elf":
                 addToAttribute("cha", 2);
-                addLanguage("Common", "Elvish");
-                addRandomLanguages(1);
+                addLanguage("racial", "Common", "Elvish");
+                addRandomLanguages("racial", 1);
                 break;
             case "Halfling":
                 addToAttribute("dex", 2);
-                addLanguage("Common", "Halfling");
+                addLanguage("racial", "Common", "Halfling");
                 break;
             case "Half-Orc":
                 addToAttribute("str", 2);
                 addToAttribute("con", 1);
-                addLanguage("Common", "Orc");
+                addLanguage("racial",  "Common", "Orc");
                 break;
             case "Human":
                 addToAttribute("str", 1);
@@ -390,13 +409,13 @@ public class DDCharacter implements Serializable {
                 addToAttribute("int", 1);
                 addToAttribute("wis", 1);
                 addToAttribute("cha", 1);
-                addLanguage("Common");
-                addRandomLanguages(1);
+                addLanguage("racial", "Common");
+                addRandomLanguages("racial",1);
                 break;
             case "Tiefling":
                 addToAttribute("int", 1);
                 addToAttribute("cha", 2);
-                addLanguage("Common", "Infernal");
+                addLanguage("racial", "Common", "Infernal");
                 break;
             default:
                 break;
@@ -445,7 +464,7 @@ public class DDCharacter implements Serializable {
                 break;
         }
         // Remove the two racial langauges
-        DDCC_Utils.removeFromList(languages, 0, 2);
+        languages.get(0).clear();
     }
 
     public String getBackground() {
@@ -502,7 +521,7 @@ public class DDCharacter implements Serializable {
         switch(background) {
             case "Acolyte":
                 setSkillProficiency(true, "Insight", "Religion");
-                addRandomLanguages(2);
+                addRandomLanguages("other",2);
                 break;
             case "Charlatan":
                 setSkillProficiency(true, "Deception", "Sleight_of_Hand");
@@ -518,22 +537,22 @@ public class DDCharacter implements Serializable {
                 break;
             case "Guild Artisan":
                 setSkillProficiency(true,  "Insight", "Persuasion");
-                addRandomLanguages(1);
+                addRandomLanguages("other",1);
                 break;
             case "Hermit":
                 setSkillProficiency(true,  "Medicine", "Religion");
                 break;
             case "Noble":
                 setSkillProficiency(true,  "History", "Persuasion");
-                addRandomLanguages(1);
+                addRandomLanguages("other",1);
                 break;
             case "Outlander":
                 setSkillProficiency(true,  "Athletics", "Survival");
-                addRandomLanguages(1);
+                addRandomLanguages("other",1);
                 break;
             case "Sage":
                 setSkillProficiency(true,  "Arcana", "History");
-                addRandomLanguages(2);
+                addRandomLanguages("other",2);
                 break;
             case "Sailor":
                 setSkillProficiency(true,  "Athletics", "Perception");
@@ -553,7 +572,7 @@ public class DDCharacter implements Serializable {
         switch(this.background) {
             case "Acolyte":
                 setSkillProficiency(false, "Insight", "Religion");
-                DDCC_Utils.removeFromList(languages, 2); // Leaves the languages from race
+                languages.get(1).clear();
                 break;
             case "Charlatan":
                 setSkillProficiency(false, "Deception", "Sleight_of_Hand");
@@ -569,22 +588,22 @@ public class DDCharacter implements Serializable {
                 break;
             case "Guild Artisan":
                 setSkillProficiency(false,  "Insight", "Persuasion");
-                DDCC_Utils.removeFromList(languages, 2);
+                languages.get(1).clear();
                 break;
             case "Hermit":
                 setSkillProficiency(false,  "Medicine", "Religion");
                 break;
             case "Noble":
                 setSkillProficiency(false,  "History", "Persuasion");
-                DDCC_Utils.removeFromList(languages, 2);
+                languages.get(1).clear();
                 break;
             case "Outlander":
                 setSkillProficiency(false,  "Athletics", "Survival");
-                DDCC_Utils.removeFromList(languages, 2);
+                languages.get(1).clear();
                 break;
             case "Sage":
                 setSkillProficiency(false,  "Arcana", "History");
-                DDCC_Utils.removeFromList(languages, 2);
+                languages.get(1).clear();
                 break;
             case "Sailor":
                 setSkillProficiency(false,  "Athletics", "Perception");

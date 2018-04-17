@@ -83,7 +83,10 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
     private void updateLanguages() {
         String text = "";
-        for(String lang : character.getLanguages()){
+        for(String lang : character.getLanguages().get(0)){
+            text += lang + "\n";
+        }
+        for(String lang : character.getLanguages().get(1)){
             text += lang + "\n";
         }
         languages.setText(text);

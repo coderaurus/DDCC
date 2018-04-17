@@ -55,7 +55,6 @@ public class DDCharacter implements Serializable {
         randomizeCharacterClass();
         randomizeBackground();
         randomizeSkillsByClass(characterClass);
-        applySkillProficiencies();
         setHealth(getLevel());
         randomizeAlignment();
         initialized = true;
@@ -888,39 +887,38 @@ public class DDCharacter implements Serializable {
         attr = attr.toLowerCase();
         switch (attr){
             case "str":
-                skills[3][0] = attributes[0][1];
+                skills[3][0] = skills[3][1] == 1 ? attributes[0][1] + proficiency : attributes[0][1];
                 break;
             case "dex":
-                skills[0][0] = attributes[1][1];
-                skills[15][0] = attributes[1][1];
-                skills[16][0] = attributes[1][1];
+                skills[0][0] = skills[0][1] == 1 ? attributes[1][1] + proficiency : attributes[1][1];
+                skills[15][0] = skills[15][1] == 1 ? attributes[1][1] + proficiency : attributes[1][1];
+                skills[16][0] = skills[16][1] == 1 ? attributes[1][1] + proficiency : attributes[1][1];
                 break;
             case "con":
                 break;
             case "int":
-                skills[2][0] = attributes[3][1];
-                skills[5][0] = attributes[3][1];
-                skills[8][0] = attributes[3][1];
-                skills[10][0] = attributes[3][1];
-                skills[14][0] = attributes[3][1];
+                skills[2][0] = skills[2][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
+                skills[5][0] = skills[5][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
+                skills[8][0] = skills[8][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
+                skills[10][0] = skills[10][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
+                skills[14][0] = skills[14][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
                 break;
             case "wis":
-                skills[1][0] = attributes[4][1];
-                skills[6][0] = attributes[4][1];
-                skills[9][0] = attributes[4][1];
-                skills[11][0] = attributes[4][1];
-                skills[17][0] = attributes[4][1];
+                skills[1][0] = skills[1][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
+                skills[6][0] = skills[6][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
+                skills[9][0] = skills[9][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
+                skills[11][0] = skills[11][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
+                skills[17][0] = skills[17][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
                 break;
             case "cha":
-                skills[4][0] = attributes[5][1];
-                skills[7][0] = attributes[5][1];
-                skills[12][0] = attributes[5][1];
-                skills[13][0] = attributes[5][1];
+                skills[4][0] = skills[4][1] == 1 ? attributes[5][1] + proficiency : attributes[5][1];
+                skills[7][0] = skills[7][1] == 1 ? attributes[5][1] + proficiency : attributes[5][1];
+                skills[12][0] = skills[12][1] == 1 ? attributes[5][1] + proficiency : attributes[5][1];
+                skills[13][0] = skills[13][1] == 1 ? attributes[5][1] + proficiency : attributes[5][1];
                 break;
             default:
                 break;
         }
-        applySkillProficiencies();
     }
 
     public void setSkillProficiency(boolean toggle, int... index){
@@ -989,16 +987,6 @@ public class DDCharacter implements Serializable {
                     break;
                 default:
                     break;
-            }
-        }
-    }
-
-
-    public void applySkillProficiencies() {
-        for(int[] skill: skills) {
-            // 1 = has proficiency
-            if(skill[1] == 1) {
-                skill[0] += proficiency;
             }
         }
     }

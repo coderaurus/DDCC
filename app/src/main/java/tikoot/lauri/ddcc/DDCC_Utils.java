@@ -79,7 +79,7 @@ public class DDCC_Utils {
         if(options.length == 1){
             // We can just make a sublist and replace the original list with it
             int len = options[0];
-            if(len >= list.size()) len = (options[0] - list.size()) - (list.size() -1) -1;
+            if(len >= list.size()) len = (len - list.size()) - (list.size() -1) -1;
             Log.i("DDCC_Utils", "--- removeFromList(): len = " + len );
             for(int i=options[0]; list.listIterator().hasNext(); i++){
                 list.remove(i);

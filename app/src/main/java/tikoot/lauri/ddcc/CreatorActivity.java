@@ -11,10 +11,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    //TODO: All the Spinners need something to select the randomized value
     private Spinner classes, levels, races, backgrounds, alignments;
     private Spinner [] attributes;
 
@@ -76,6 +73,14 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         };
     }
 
+
+    private void updateAttributes() {
+        for(int i=0; i<attributes.length; i++){
+            attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
+                    String.valueOf(character.getAttribute(i))));
+        }
+    }
+
     private void updateLanguages() {
         String text = "";
         for(String lang : character.getLanguages()){
@@ -113,7 +118,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
     public void setHealth(){
         health = (TextView) findViewById(R.id.creator_health);
-        health.setText(getHealthString());
+        updateHealth();
     }
 
     public void initializeSpinners(){
@@ -157,7 +162,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         initializeAttributeSpinners(adapter);
     }
 
-    public void initializeAttributeSpinners(ArrayAdapter<CharSequence> adapter) {
+    private void initializeAttributeSpinners(ArrayAdapter<CharSequence> adapter) {
         // Set attributes
         for(int i=0; i < attributeIds.length; i++) {
             attributes[i] = (Spinner) findViewById(attributeIds[i]);
@@ -171,7 +176,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
-    public int findSelection(SpinnerAdapter adapter, String wanted){
+    private int findSelection(SpinnerAdapter adapter, String wanted){
         for(int i=0; i<adapter.getCount(); i++){
             if(adapter.getItem(i).equals(wanted)){
                 return i;
@@ -180,49 +185,67 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         return -1;
     }
 
-    public String getHealthString() {
+    private String getHealthString() {
         return character.getHealth() + " (d" + character.getHitDie() + ")";
     }
 
+    private void updateHealth(){
+        health.setText(getHealthString());
+    }
+
+    //TODO: Updates don't work. UI is not updated...
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         switch (parent.getId()){
             case R.id.creator_level:
-                Log.i("CreatorActivity", "New level:" + parent.getItemAtPosition(pos).toString());
                 int newLevel = Integer.parseInt(parent.getItemAtPosition(pos).toString());
                 character.setHealth(newLevel);
                 character.setLevel(newLevel);
-                health.setText(getHealthString());
+                updateHealth();
                 break;
             case R.id.creator_class:
                 character.setCharacterClass(parent.getItemAtPosition(pos).toString());
+                character.setHealth(character.getLevel());
+                updateHealth();
                 break;
             case R.id.creator_race:
                 character.setRace(parent.getItemAtPosition(pos).toString());
+                updateLanguages();
+                updateAttributes();
+                updateSkills();
                 break;
             case R.id.creator_background:
                 character.setBackground(parent.getItemAtPosition(pos).toString());
+                updateLanguages();
                 break;
             case R.id.creator_alignment:
                 character.setAlignment(parent.getItemAtPosition(pos).toString());
                 break;
             case R.id.creator_attribute_str_score:
                 character.setAttribute("str", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateSkills();
                 break;
             case R.id.creator_attribute_dex_score:
                 character.setAttribute("dex", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateSkills();
                 break;
             case R.id.creator_attribute_con_score:
                 character.setAttribute("con", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                character.setHealth(character.getHealth());
+                updateSkills();
+                updateHealth();
                 break;
             case R.id.creator_attribute_int_score:
                 character.setAttribute("int", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateSkills();
                 break;
             case R.id.creator_attribute_wis_score:
                 character.setAttribute("wis", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateSkills();
                 break;
             case R.id.creator_attribute_cha_score:
                 character.setAttribute("cha", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateSkills();
                 break;
             default:
                 break;

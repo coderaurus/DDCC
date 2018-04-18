@@ -30,5 +30,8 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("character", ddCharacter);
             startActivity(i);
         }
+        else if(view.getId() == R.id.menu_button_exit) {
+            finishAndRemoveTask();
+        }
     }
 }

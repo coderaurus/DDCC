@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/creator_class"
-                        android:layout_width="155sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
@@ -62,13 +62,13 @@
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/creator_race"
-                        android:layout_width="165sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </TableRow>
             <!-- Second row of general info-->
             <TableRow
-                android:paddingBottom="10sp">
+                android:paddingBottom="5sp">
                 <LinearLayout
                     android:orientation="vertical">
                     <TextView
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/creator_background"
-                        android:layout_width="155sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
@@ -104,9 +104,30 @@
                         android:layout_height="wrap_content" />
                     <android.support.v7.widget.AppCompatSpinner
                         android:id="@+id/creator_alignment"
-                        android:layout_width="165sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:paddingBottom="10sp">
+                <TableLayout
+                    android:layout_span="3"
+                    android:orientation="horizontal">
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/languages_title"
+                            android:text="Languages"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/languages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
+                </TableLayout>
             </TableRow>
             <!--
                 Attributes
@@ -320,24 +341,7 @@
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>
-                <TableLayout
-                    android:paddingStart="10sp"
-                    android:orientation="vertical">
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/languages_title"
-                            android:text="Languages"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/languages"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </TableRow>
-                </TableLayout>
+
             </TableRow>
         </TableLayout>
     </ScrollView>

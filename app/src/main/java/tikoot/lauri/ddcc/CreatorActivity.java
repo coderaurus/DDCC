@@ -82,12 +82,13 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void updateLanguages() {
+        // TODO: Proper working separator ( , )
         String text = "";
         for(String lang : character.getLanguages().get(0)){
-            text += lang + "\n";
+                text += lang + "  ";
         }
         for(String lang : character.getLanguages().get(1)){
-            text += lang + "\n";
+                text += lang + "  ";
         }
         languages.setText(text);
     }

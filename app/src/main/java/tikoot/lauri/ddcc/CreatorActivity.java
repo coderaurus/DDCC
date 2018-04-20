@@ -64,14 +64,14 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         initializeSpinners();
         setHealth();
 
-        intializeSkills();
+        initializeSkills();
         updateSkills();
 
         languages = (TextView) findViewById(R.id.languages);
         updateLanguages();
     }
 
-    private void intializeSkills() {
+    private void initializeSkills() {
         skills = new int[][]{
                 new int[]{R.id.creator_skills_acrobatics,        R.string.acrobatics},
                 new int[]{R.id.creator_skills_animalhandling,    R.string.animalHandling},
@@ -94,26 +94,50 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         };
     }
 
+    private void updateAttributeText(int... i) {
+        if(i.length > 0){
+            int [][] saves = character.getAttributeSaves();
+            TextView view = findViewById(attributeTexts[i[0]]);
+            String str = getResources().getString(attributeNames[i[0]]);
+            str += saves[i[0]][0] > -1 ? " (+" + saves[i[0]][0] + ")" :
+                    " (" + saves[i[0]][0] + ")";
 
-    private void updateAttributes() {
-        int [][] saves = character.getAttributeSaves();
-        for(int i=0; i<attributes.length; i++){
-            attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
-                    String.valueOf(character.getAttribute(i))));
-
-            String str = saves[i][0] > -1 ? "(+" + saves[i][0] + ") " :
-                    "(" + saves[i][0] + ")";
-            str += getResources().getString(attributeNames[i]);
-            TextView view = findViewById(attributeTexts[i]);
             view.setText(str);
-            
-            if(saves[i][1] == 1){
+
+            if(saves[i[0]][1] == 1){
                 boldText(view, true);
             }
             else {
                 boldText(view, false);
             }
             view.invalidate();
+        }
+        else {
+            for(int j = 0; j < attributeTexts.length; j++) {
+                int [][] saves = character.getAttributeSaves();
+                TextView view = findViewById(attributeTexts[j]);
+                String str = getResources().getString(attributeNames[j]);
+                str += saves[j][0] > -1 ? " (+" + saves[j][0] + ")" :
+                        " (" + saves[j][0] + ")";
+
+                view.setText(str);
+
+                if(saves[j][1] == 1){
+                    boldText(view, true);
+                }
+                else {
+                    boldText(view, false);
+                }
+                view.invalidate();
+            }
+        }
+    }
+
+    private void updateAttributes() {
+        for(int i=0; i<attributes.length; i++){
+            attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
+                    String.valueOf(character.getAttribute(i))));
+            updateAttributeText(i);
         }
     }
 
@@ -255,6 +279,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             case R.id.creator_class:
                 character.setCharacterClass(parent.getItemAtPosition(pos).toString());
                 character.setHealth(character.getLevel());
+                updateAttributeText();
                 updateHealth();
                 break;
             case R.id.creator_race:

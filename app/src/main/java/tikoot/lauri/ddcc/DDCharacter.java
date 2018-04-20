@@ -745,6 +745,8 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
+
+        setAttributeSaveMod(attr);
         setSkills(attr);
     }
 
@@ -864,6 +866,31 @@ public class DDCharacter implements Serializable {
         return attributeSaves;
     }
 
+    public void setAttributeSaveMod(String attr){
+        switch (attr){
+            case "str":
+                attributeSaves[0][0] = attributeSaves[0][1] == 1 ? attributes[0][1] + proficiency : attributes[0][1];
+                break;
+            case "dex":
+                attributeSaves[1][0] = attributeSaves[1][1] == 1 ? attributes[1][1] + proficiency : attributes[1][1];
+                break;
+            case "con":
+                attributeSaves[2][0] = attributeSaves[2][1] == 1 ? attributes[2][1] + proficiency : attributes[2][1];
+                break;
+            case "int":
+                attributeSaves[3][0] = attributeSaves[3][1] == 1 ? attributes[3][1] + proficiency : attributes[3][1];
+                break;
+            case "wis":
+                attributeSaves[4][0] = attributeSaves[4][1] == 1 ? attributes[4][1] + proficiency : attributes[4][1];
+                break;
+            case "cha":
+                attributeSaves[5][0] = attributeSaves[5][1] == 1 ? attributes[5][1] + proficiency : attributes[5][1];
+                break;
+            default:
+                break;
+        }
+    }
+
     public void setAttributeSave(String attr, boolean toggle) {
         // Toggle 1 = true, 0 = false
         switch (attr){
@@ -888,6 +915,7 @@ public class DDCharacter implements Serializable {
             default:
                 break;
         }
+        setAttributeSaveMod(attr);
     }
 
     public int[] getSkill(int i){

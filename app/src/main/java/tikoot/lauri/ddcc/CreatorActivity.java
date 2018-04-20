@@ -11,11 +11,14 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+
 public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner classes, levels, races, backgrounds, alignments;
     private Spinner [] attributes;
 
     private int [] attributeIds;
+    private int [] attributeNames;
+    private int [] attributeTexts;
     private int [][] skills;
 
     private TextView health;
@@ -38,6 +41,24 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 R.id.creator_attribute_int_score,
                 R.id.creator_attribute_wis_score,
                 R.id.creator_attribute_cha_score };
+
+        attributeNames = new int[]{
+                R.string.strength,
+                R.string.dexterity,
+                R.string.constitution,
+                R.string.intelligence,
+                R.string.wisdom,
+                R.string.charisma
+        };
+        attributeTexts = new int[]{
+                R.id.creator_attribute_str_text,
+                R.id.creator_attribute_dex_text,
+                R.id.creator_attribute_con_text,
+                R.id.creator_attribute_int_text,
+                R.id.creator_attribute_wis_text,
+                R.id.creator_attribute_cha_text
+        };
+
 
         setContentView(R.layout.activity_creator);
         initializeSpinners();
@@ -75,9 +96,24 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
 
     private void updateAttributes() {
+        int [][] saves = character.getAttributeSaves();
         for(int i=0; i<attributes.length; i++){
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
                     String.valueOf(character.getAttribute(i))));
+
+            String str = saves[i][0] > -1 ? "(+" + saves[i][0] + ") " :
+                    "(" + saves[i][0] + ")";
+            str += getResources().getString(attributeNames[i]);
+            TextView view = findViewById(attributeTexts[i]);
+            view.setText(str);
+            
+            if(saves[i][1] == 1){
+                boldText(view, true);
+            }
+            else {
+                boldText(view, false);
+            }
+            view.invalidate();
         }
     }
 

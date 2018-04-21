@@ -1,7 +1,5 @@
 package tikoot.lauri.ddcc;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +91,8 @@ public class DDCharacter implements Serializable {
                 for(String lang : langs){
                     if(languages.get(0).isEmpty() || !languages.get(0).contains(lang)) {
                         languages.get(0).add(lang);
+                        // Replace duplicate from other array and randomize another language
+                        // in return
                         if(languages.get(1).contains(lang)){
                             languages.get(1).remove(lang);
                             addRandomLanguages("other", 1);
@@ -102,8 +102,13 @@ public class DDCharacter implements Serializable {
             }
             else { // side == "other"
                 for(String lang : langs){
-                    if(languages.get(0).isEmpty() || !languages.get(1).contains(lang)) {
+                    if(languages.get(1).isEmpty() || !languages.get(1).contains(lang) &&
+                            !languages.get(0).contains(lang)) {
                         languages.get(1).add(lang);
+                    }
+                    else {
+                        // Replace given language with a random one.
+                        addRandomLanguages("other", 1);
                     }
                 }
             }

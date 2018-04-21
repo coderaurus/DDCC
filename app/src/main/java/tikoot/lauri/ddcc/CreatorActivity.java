@@ -3,7 +3,11 @@ package tikoot.lauri.ddcc;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +33,14 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_creator);
+
+        // ActionBar = getSupportAction
+        // bar.setTitle
+        // buttons??!
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.menu_bar);
+        setSupportActionBar(toolbar);
 
         character = (DDCharacter) getIntent().getSerializableExtra("character");
         Log.i("CreatorActivity",character.toString());
@@ -50,6 +62,7 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 R.string.wisdom,
                 R.string.charisma
         };
+
         attributeTexts = new int[]{
                 R.id.creator_attribute_str_text,
                 R.id.creator_attribute_dex_text,
@@ -60,7 +73,6 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         };
 
 
-        setContentView(R.layout.activity_creator);
         initializeSpinners();
         setHealth();
 
@@ -329,5 +341,47 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void recreateCharacter(){
+        character = new DDCharacter();
+
+        levels.setSelection(findSelection(levels.getAdapter(), String.valueOf(character.getLevel())));
+        classes.setSelection(findSelection(classes.getAdapter(), character.getCharacterClass()));
+        races.setSelection(findSelection(races.getAdapter(), character.getRace()));
+        backgrounds.setSelection(findSelection(backgrounds.getAdapter(),
+                character.getBackground()));
+        alignments.setSelection(findSelection(alignments.getAdapter(), character.getAlignment()));
+
+        setHealth();
+        updateHealth();
+        updateAttributes();
+        updateAttributeText();
+        updateSkills();
+        updateLanguages();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_create:
+                recreateCharacter();
+                return true;
+            case R.id.menu_save:
+                return true;
+            case R.id.menu_help:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.creator_menu, menu);
+        return true;
     }
 }

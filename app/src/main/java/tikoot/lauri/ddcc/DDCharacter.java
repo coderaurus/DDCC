@@ -233,6 +233,10 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns a random language from a basic pool of languages determined by races.
+     * @return randomized language
+     */
     public String randomLanguage(){
         switch (DDCC_Utils.randomInt(7)) {
             case 1:
@@ -254,18 +258,33 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns the amount of sides of hit die.
+     * @return hit die value
+     */
     public int getHitDie() {
         return hitDie;
     }
 
+    /**
+     * Method sets the hit die.
+     * @param hitDie amount of sides the die has.
+     */
     public void setHitDie(int hitDie) {
         this.hitDie = hitDie;
     }
 
+    /**
+     * Method returns class of the character.
+     * @return the class of character
+     */
     public String getCharacterClass() {
         return characterClass;
     }
 
+    /**
+     * Method randomizes the class of character.
+     */
     public void randomizeCharacterClass(){
         switch (DDCC_Utils.randomInt(12)){
             case 1:
@@ -307,6 +326,10 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method sets the class of character.
+     * @param characterClass class you want to set
+     */
     public void setCharacterClass(String characterClass) {
         if(initialized) resetCharacterClass();
 
@@ -377,6 +400,9 @@ public class DDCharacter implements Serializable {
         this.characterClass = characterClass;
     }
 
+    /**
+     * Method resets class of character.
+     */
     private void resetCharacterClass() {
         hitDie = 0;
         switch(this.characterClass) {
@@ -433,10 +459,17 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns the race of character.
+     * @return the race of character
+     */
     public String getRace() {
         return race;
     }
 
+    /**
+     * Method randomizes character's race. Races included are determined by Player's Handbook.
+     */
     public void randomizeRace() {
         switch (DDCC_Utils.randomInt(9)){
             case 1:
@@ -469,7 +502,10 @@ public class DDCharacter implements Serializable {
         }
     }
 
-    
+    /**
+     * Method sets the race of character.
+     * @param race race of character
+     */
     public void setRace(String race) {
         // Method doesn't take in account subraces like Mountain Dwarf or Wood Elf as of yet
         // Reset current racial attribute bonuses
@@ -528,6 +564,9 @@ public class DDCharacter implements Serializable {
         this.race = race;
     }
 
+    /**
+     * Method resets all the attribute and language benefits race gives.
+     */
     private void resetRace() {
         switch(this.race){
             case "Dragonborn":
@@ -572,10 +611,17 @@ public class DDCharacter implements Serializable {
         languages.get(0).clear();
     }
 
+    /**
+     * Method returns background of character.
+     * @return the background of character
+     */
     public String getBackground() {
         return background;
     }
 
+    /**
+     * Method randomizes the background of character. Backgrounds are from Player's Handbook.
+     */
     public void randomizeBackground() {
         switch (DDCC_Utils.randomInt(13)){
             case 1:
@@ -620,6 +666,10 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method sets the background of character.
+     * @param background background of character
+     */
     public void setBackground(String background) {
         if(initialized) resetBackground();
         this.background = background;
@@ -672,7 +722,10 @@ public class DDCharacter implements Serializable {
                 break;
         }        
     }
-    
+
+    /**
+     * Method resets the benefits background gives. This includes skill proficiencies and languages.
+     */
     public void resetBackground(){
         switch(this.background) {
             case "Acolyte":
@@ -724,14 +777,25 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns character's alignment.
+     * @return alignment of character
+     */
     public String getAlignment() {
         return alignment;
     }
 
+    /**
+     * Method sets the alignment of character.
+     * @param alignment alignment of character
+     */
     public void setAlignment(String alignment) {
         this.alignment = alignment;
     }
 
+    /**
+     * Method randomizes the alignment of character.
+     */
     public void randomizeAlignment(){
         switch (DDCC_Utils.randomInt(9)){
            case 1:

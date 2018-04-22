@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -18,9 +19,12 @@ public interface DDCharacterDao {
     @Query("SELECT * FROM DDCharacter WHERE id LIKE :id LIMIT 1")
     DDCharacter findById(int id);
 
+    @Update
+    public void updateUsers(DDCharacter... characters);
+
     @Insert
-    void insertAll(DDCharacter... users);
+    void insertAll(DDCharacter... characters);
 
     @Delete
-    void delete(DDCharacter user);
+    void delete(DDCharacter character);
 }

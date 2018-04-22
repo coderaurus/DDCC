@@ -259,6 +259,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         updateHealth();
     }
 
+    /**
+     * Method initializes all the Spinners in activity.
+     */
     public void initializeSpinners(){
         classes = (Spinner) findViewById(R.id.creator_class);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -304,6 +307,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         initializeAttributeSpinners(adapter);
     }
 
+    /**
+     * Method initializes all the attribute spinners.
+     *
+     * @param adapter the ArrayAdapter handling all the spinners
+     */
     private void initializeAttributeSpinners(ArrayAdapter<CharSequence> adapter) {
         // Set attributes
         for(int i=0; i < attributeIds.length; i++) {
@@ -315,10 +323,15 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
                     String.valueOf(character.getAttribute(i))));
             attributes[i].setOnItemSelectedListener(this);
-            //TODO: update modifier
         }
     }
 
+    /**
+     * Method finds the correct index of the spinner item matching the actual character value and returns it.
+     * @param adapter SpinnerAdapter where index is searched from
+     * @param wanted name of attribute of index we are looking for
+     * @return index matching searched value
+     */
     private int findSelection(SpinnerAdapter adapter, String wanted){
         for(int i=0; i<adapter.getCount(); i++){
             if(adapter.getItem(i).equals(wanted)){
@@ -328,15 +341,33 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         return -1;
     }
 
+    /**
+     * Method returns health information. First comes the maximum health which is followed by hit die
+     * of the class in the clauses.
+     * @return properly formatted text depicting health
+     */
     private String getHealthString() {
         return character.getHealth() + " (d" + character.getHitDie() + ")";
     }
 
+    /**
+     * Method updates textView of health
+     */
     private void updateHealth(){
         health.setText(getHealthString());
         health.invalidate();
     }
 
+    /**
+     * Method handles all the selections of spinners. All cases follow these steps:
+     * 1) Update data of character
+     * 2) Update UI
+     *
+     * @param parent AdapterView of Spinner holding values
+     * @param view
+     * @param pos index of adapter value
+     * @param id
+     */
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         Log.d("CreatorActivity--", parent.getItemAtPosition(pos).toString());
@@ -403,11 +434,18 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method would handle no selections but it is not needed.
+     * @param adapterView
+     */
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
+    /**
+     * Method creates new DDCharacter and updates UI accordingly.
+     */
     public void recreateCharacter(){
         character = new DDCharacter();
 
@@ -426,6 +464,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         updateLanguages();
     }
 
+    /**
+     * Method handles toolbar button clicks.
+     * @param item menu item clicked
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -446,6 +489,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method inflates toolbar with menu items
+     * @param menu menu you want to inflate
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -453,6 +501,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+    /**
+     * Inner class for handling database connection
+     */
     class DatabaseServiceConnection implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {

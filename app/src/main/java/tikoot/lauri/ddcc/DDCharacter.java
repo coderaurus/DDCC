@@ -120,15 +120,28 @@ public class DDCharacter implements Serializable {
 
     }
 
+    /**
+     * Method sets the id. Needed for database.
+     * <b>Do not use manually.</b>
+     *
+     * @param id primary key id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Method returns total or maximum health value character can have.
+     * @return total health
+     */
     public int getHealth() {
         return health;
     }
 
-    // Requires CON modifier set
+    /**
+     * Method sets the health according to level and constitution modifier.
+     * @param level level of character
+     */
     public void setHealth(int level) {
         if(level == 1) {
             this.health = hitDie + getAttributeModifier("con");
@@ -141,14 +154,32 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns List of Lists containing languages. The languages have been separated by origin.
+     *
+     * @return
+     */
     public List<List<String>> getLanguages() {
         return languages;
     }
 
+    /**
+     * Method sets List holding all the languages
+     * @param languages List of Lists containing languages
+     */
     public void setLanguages(List<List<String>> languages) {
         this.languages = languages;
     }
 
+    /**
+     * Method adds languages to Lists. There are two options to use:
+     *  - "racial" for langauges determined by Race
+     *  - "other" for other sources
+     * Super special languages like Druidic are not included.
+     *
+     * @param side the list you want to add language to
+     * @param langs languages you want to add
+     */
     public void addLanguage(String side, String... langs) {
         if(langs.length > 0) {
             if(side.equals("racial")) {
@@ -179,6 +210,11 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method adds random languages to specified list.
+     * @param side list of languages you want to add to
+     * @param amount amount of languages you want to randomize
+     */
     public void addRandomLanguages(String side, int amount){
         for(int i=0; i<amount;) {
             String lang = randomLanguage();

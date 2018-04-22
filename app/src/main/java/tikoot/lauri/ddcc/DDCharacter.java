@@ -1,5 +1,9 @@
 package tikoot.lauri.ddcc;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,25 +14,37 @@ import java.util.List;
  * DDCharacter stores and handles all the necessary information of a created character.
  */
 
+@Entity
 public class DDCharacter implements Serializable {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name="class")
     private String characterClass;
+    @ColumnInfo(name="race")
     private String race;
+    @ColumnInfo(name="background")
     private String background;
+    @ColumnInfo(name="alignment")
     private String alignment;
-
+    @ColumnInfo(name="languages")
     private List<List<String>> languages;
-
+    @ColumnInfo(name="level")
     private int level;
+    @ColumnInfo(name="proficiency")
     private int proficiency;
+    @ColumnInfo(name="health")
     private int health;
+    @ColumnInfo(name="hit-die")
     private int hitDie;
-
+    @ColumnInfo(name="attribute")
     private int [][] attributes;        // skill:attribute score + modifier
-
+    @ColumnInfo(name="attribute-save")
     private int [][] attributeSaves;    // modifiers + proficiency
+    @ColumnInfo(name="skills")
     private int [][] skills;            // modifier + proficiency
-
+    @ColumnInfo(name="initialized")
     private boolean initialized = false;
 
     public DDCharacter() {
@@ -58,6 +74,32 @@ public class DDCharacter implements Serializable {
         setHealth(getLevel());
         randomizeAlignment();
         initialized = true;
+    }
+
+
+    public void setProficiency(int proficiency) {
+        this.proficiency = proficiency;
+    }
+
+    public void setAttributeSaves(int[][] attributeSaves) {
+        this.attributeSaves = attributeSaves;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
+    }
+
+    public int getId() {
+        return id;
+
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getHealth() {

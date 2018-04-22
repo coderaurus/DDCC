@@ -2,6 +2,10 @@ package tikoot.lauri.ddcc;
 
 import java.util.Random;
 
+/**
+ * DDCC_Utils contains practical methods from randomized integer suited for the app and simulating
+ * rolling the dies.
+ */
 public class DDCC_Utils {
 
     /**

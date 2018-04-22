@@ -1156,18 +1156,35 @@ public class DDCharacter implements Serializable {
         setAttributeSaveMod(attr);
     }
 
+    /**
+     * Method returns information array of given skill: score and proficiency
+     * @param i index of skill
+     * @return integer array holding information
+     */
     public int[] getSkill(int i){
         return skills[i];
     }
 
+    /**
+     * Method returns all data of skills in a two dimensional array
+     * @return 2D array of data of skills
+     */
     public int[][] getSkills() {
         return skills;
     }
 
+    /**
+     * Method sets skills array
+     * @param skills new 2D array
+     */
     public void setSkills(int[][] skills) {
         this.skills = skills;
     }
 
+    /**
+     * Method sets the scores of skills related to given attribute
+     * @param attr attribute of character
+     */
     public void setSkills(String attr) {
         attr = attr.toLowerCase();
         switch (attr){
@@ -1206,12 +1223,22 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method sets the proficiency of skills
+     * @param toggle true for proficient
+     * @param index indexes of skills you want to change
+     */
     public void setSkillProficiency(boolean toggle, int... index){
         for(int i : index){
             skills[i][1] = toggle ? 1 : 0;
         }
     }
 
+    /**
+     * Method sets proficiencies of given skills
+     * @param toggle true for proficient
+     * @param skills skills you want to change
+     */
     public void setSkillProficiency(boolean toggle, String... skills){
         for(String skill : skills) {
             skill = skill.toLowerCase();
@@ -1276,6 +1303,9 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method resets proficiency of skills
+     */
     public void resetSkillProficiencies() {
         for(int[] skill: skills) {
             // 1 = has proficiency
@@ -1286,6 +1316,10 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method randomly picks skills by class. Each class has a specific pool of skills to choose from.
+     * @param cls class you want to randomize by
+     */
     public void randomizeSkillsByClass(String cls){
         int [] skillPool;
 
@@ -1346,6 +1380,12 @@ public class DDCharacter implements Serializable {
         setSkillProficiency(true, skillPool);
     }
 
+    /**
+     * Method returns array of randomly chosen skills
+     * @param amount how many skills is chosen
+     * @param skillPool pool of indexes to choose from
+     * @return array of randomly chosen skills
+     */
     public int[] chooseSkills(int amount, int[] skillPool) {
         int[] chosenSkills = new int[amount];
         for(int i =0; i<chosenSkills.length; i++) {
@@ -1367,6 +1407,10 @@ public class DDCharacter implements Serializable {
         return chosenSkills;
     }
 
+    /**
+     * Method returns String representation of DDCharacter class. Used for debugging.
+     * @return stringified class
+     */
     @Override
     public String toString() {
         return "DDCharacter{" +

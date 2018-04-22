@@ -21,7 +21,9 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+/**
+ * This class is handles Character Creating Layout and updates components when needed.
+ */
 public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner classes, levels, races, backgrounds, alignments;
     private Spinner [] attributes;
@@ -40,6 +42,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     private ServiceConnection serviceConnection;
     private boolean isBound = false;
 
+    /**
+     * This method initializes custom toolbar, character that was given by MainActivity and other
+     * layout elemenets.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +97,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         updateLanguages();
     }
 
+    /**
+     * Method binds the database service
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -97,6 +107,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * Method unbinds the service
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -106,6 +119,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method initializes array used to retrieve layout ids and text for skills
+     */
     private void initializeSkills() {
         skills = new int[][]{
                 new int[]{R.id.creator_skills_acrobatics,        R.string.acrobatics},
@@ -129,6 +145,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         };
     }
 
+    /**
+     * Method updates text of attributes. One parameter can be used to determine the index of attribute.
+     * Also text is <b>bolded</b> if attribute save has proficiency
+     * @param i index of attribute
+     */
     private void updateAttributeText(int... i) {
         if(i.length > 0){
             int [][] saves = character.getAttributeSaves();
@@ -168,6 +189,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method updates all the attribute Spinners and calls for their text update.
+     */
     private void updateAttributes() {
         for(int i=0; i<attributes.length; i++){
             attributes[i].setSelection(findSelection(attributes[i].getAdapter(),
@@ -176,6 +200,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method updates text containing all the languages.
+     */
     private void updateLanguages() {
         String text = "";
         for(String lang : character.getLanguages().get(0)){
@@ -187,6 +214,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         languages.setText(text);
     }
 
+    /**
+     * Method updates text containing all the skills and their modifiers.
+     */
     private void updateSkills() {
         for(int i=0; i<skills.length; i++){
             TextView textView = (TextView) findViewById(skills[i][0]);
@@ -207,6 +237,11 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method toggles <b>bold</b> given textView according to proficiency.
+     * @param skill textView to be bolded/normalized
+     * @param proficient boolean determing whether skill is proficient
+     */
     private void boldText(TextView skill, boolean proficient) {
         if(proficient){
             skill.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL), 1);
@@ -216,6 +251,9 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         }
     }
 
+    /**
+     * Method initializes health textView
+     */
     public void setHealth(){
         health = (TextView) findViewById(R.id.creator_health);
         updateHealth();

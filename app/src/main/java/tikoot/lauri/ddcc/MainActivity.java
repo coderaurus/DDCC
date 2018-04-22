@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             LocalBinder binder = (LocalBinder) service;
-            dbService = binder.getService();
+            dbService    = binder.getService();
             isBound = true;
             Toast.makeText(getApplicationContext(), "Service Bound",Toast.LENGTH_LONG);
         }

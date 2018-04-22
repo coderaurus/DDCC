@@ -330,28 +330,34 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 break;
             case R.id.creator_attribute_str_score:
                 character.setAttribute("str", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateAttributeText(0);
                 updateSkills();
                 break;
             case R.id.creator_attribute_dex_score:
                 character.setAttribute("dex", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateAttributeText(1);
                 updateSkills();
                 break;
             case R.id.creator_attribute_con_score:
                 character.setAttribute("con", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
                 character.setHealth(character.getLevel());
+                updateAttributeText(2);
                 updateSkills();
                 updateHealth();
                 break;
             case R.id.creator_attribute_int_score:
                 character.setAttribute("int", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateAttributeText(3);
                 updateSkills();
                 break;
             case R.id.creator_attribute_wis_score:
                 character.setAttribute("wis", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateAttributeText(4);
                 updateSkills();
                 break;
             case R.id.creator_attribute_cha_score:
                 character.setAttribute("cha", Integer.parseInt(parent.getItemAtPosition(pos).toString()));
+                updateAttributeText(5);
                 updateSkills();
                 break;
             default:

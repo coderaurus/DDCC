@@ -8,5 +8,4 @@ import android.arch.persistence.room.TypeConverters;
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract DDCharacterDao characterDao();
-
 }

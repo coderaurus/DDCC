@@ -16,7 +16,7 @@ public interface DDCharacterDao {
     @Query("SELECT * FROM DDCharacter WHERE id IN (:id)")
     List<DDCharacter> loadAllByIds(int[] id);
 
-    @Query("SELECT * FROM DDCharacter WHERE id LIKE :id LIMIT 1")
+    @Query("SELECT * FROM DDCharacter WHERE id = :id LIMIT 1")
     DDCharacter findById(int id);
 
     @Update

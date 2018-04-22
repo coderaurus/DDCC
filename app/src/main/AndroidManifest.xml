@@ -18,6 +18,6 @@
         </activity>
         <activity android:name=".CreatorActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <service android:name=".DatabaseService"></service>
     </application>
-
 </manifest>

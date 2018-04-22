@@ -1,6 +1,11 @@
 package tikoot.lauri.ddcc;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Typeface;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class CreatorActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -30,20 +36,21 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
     private DDCharacter character;
 
+    private DatabaseService dbService;
+    private ServiceConnection serviceConnection;
+    private boolean isBound = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creator);
 
-        // ActionBar = getSupportAction
-        // bar.setTitle
-        // buttons??!
+        serviceConnection = new DatabaseServiceConnection();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.menu_bar);
         setSupportActionBar(toolbar);
 
         character = (DDCharacter) getIntent().getSerializableExtra("character");
-        Log.i("CreatorActivity",character.toString());
 
         attributes = new Spinner[6];
         attributeIds = new int[]{
@@ -81,6 +88,22 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
 
         languages = (TextView) findViewById(R.id.languages);
         updateLanguages();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent i = new Intent(this, DatabaseService.class);
+        bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(isBound) {
+            unbindService(serviceConnection);
+            isBound = false;
+        }
     }
 
     private void initializeSkills() {
@@ -154,7 +177,6 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
     }
 
     private void updateLanguages() {
-        // TODO: Proper working separator ( , )
         String text = "";
         for(String lang : character.getLanguages().get(0)){
                 text += lang + "  ";
@@ -277,7 +299,6 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         health.invalidate();
     }
 
-    //TODO: Updates don't work. UI is not updated...
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         Log.d("CreatorActivity--", parent.getItemAtPosition(pos).toString());
@@ -368,13 +389,16 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
                 recreateCharacter();
                 return true;
             case R.id.menu_save:
+                // dbService.saveCharacter(character);
+                return true;
+            case R.id.menu_load:
+                // dbService.loadCharacter();
                 return true;
             case R.id.menu_help:
+                // TODO: Implement help documentation fragemnt
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -383,5 +407,20 @@ public class CreatorActivity extends AppCompatActivity implements AdapterView.On
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.creator_menu, menu);
         return true;
+    }
+
+    class DatabaseServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder service) {
+            LocalBinder binder = (LocalBinder) service;
+            dbService = binder.getService();
+            isBound = true;
+            Toast.makeText(getApplicationContext(), "Service Bound",Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isBound = false;
+        }
     }
 }

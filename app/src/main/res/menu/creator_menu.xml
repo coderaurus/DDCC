@@ -7,11 +7,19 @@
         app:showAsAction="ifRoom"
         />
     <item
+        android:enabled="false"
         android:title="Save"
         android:id="@+id/menu_save"
         app:showAsAction="never"
         />
     <item
+        android:enabled="false"
+        android:title="Load"
+        android:id="@+id/menu_load"
+        app:showAsAction="never"
+        />
+    <item
+        android:enabled="false"
         android:title="Help"
         android:id="@+id/menu_help"
         app:showAsAction="never"

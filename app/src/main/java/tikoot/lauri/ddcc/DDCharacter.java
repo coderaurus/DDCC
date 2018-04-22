@@ -47,6 +47,9 @@ public class DDCharacter implements Serializable {
     @ColumnInfo(name="initialized")
     private boolean initialized = false;
 
+    /**
+     * Empty constructor. Initializes variables and fills them with randomized values.
+     */
     public DDCharacter() {
         characterClass = "";
         race = "";
@@ -76,23 +79,42 @@ public class DDCharacter implements Serializable {
         initialized = true;
     }
 
-
+    /**
+     * Method set proficiency bonus of character. This is mainly for database if needed at all.
+     * @param proficiency proficiency bonus
+     */
     public void setProficiency(int proficiency) {
         this.proficiency = proficiency;
     }
 
+    /**
+     * Method sets the attribute saves array.
+     * @param attributeSaves array of values you want to give
+     */
     public void setAttributeSaves(int[][] attributeSaves) {
         this.attributeSaves = attributeSaves;
     }
 
+    /**
+     * Method returns state of initialization
+     * @return boolean of state of initialization
+     */
     public boolean isInitialized() {
         return initialized;
     }
 
+    /**
+     * Method set the state of initialization of character.
+     * @param initialized true if done, false if not
+     */
     public void setInitialized(boolean initialized) {
         this.initialized = initialized;
     }
 
+    /**
+     * Method returns the id. This is needed for database
+     * @return primary key id
+     */
     public int getId() {
         return id;
 

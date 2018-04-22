@@ -830,10 +830,19 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns the level of character.
+     * @return value of level
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Method sets the level of character. Attribute increases are not included currenctly.
+     *
+     * @param level level you want
+     */
     public void setLevel(int level) {
         this.level = level;
         setProficiency();
@@ -842,10 +851,18 @@ public class DDCharacter implements Serializable {
          */
     }
 
+    /**
+     * Method returns the proficiency bonus determined by level.
+     * @return
+     */
     public int getProficiency() {
         return proficiency;
     }
 
+    /**
+     * Method sets the proficiency bonus. Bonus starts from level one and increases by one every
+     * fourth level (excluding first stage at levels 1 to 4).
+     */
     public void setProficiency() {
         if(level >= 1 && level <= 4){
             proficiency = 2;
@@ -864,18 +881,36 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method returns attributes in two dimensional array. Array holds score and modifier
+     * of attributes.
+     * @return attributes in 2d array
+     */
     public int[][] getAttributes() {
         return attributes;
     }
 
+    /**
+     * Method returns specified attribute score (not the modifier).
+     * @param i index of attribute wanted
+     * @return attribute score
+     */
     public int getAttribute(int i){
         return attributes[i][0];
     }
 
+    /**
+     * Method sets array of attributes.
+     * @param attributes 2D array of values
+     */
     public void setAttributes(int[][] attributes) {
         this.attributes = attributes;
     }
 
+    /**
+     * Method randomizes attributes with formula given by Player's Handbook:
+     * - Roll four d6 dice and take the smallest roll out of the result.
+     */
     public void randomizeAttributes(){
         setAttribute("str", DDCC_Utils.rollDies(6, 4, "smallest"));
         setAttribute("dex", DDCC_Utils.rollDies(6, 4, "smallest"));
@@ -885,6 +920,12 @@ public class DDCharacter implements Serializable {
         setAttribute("cha", DDCC_Utils.rollDies(6, 4, "smallest"));
     }
 
+    /**
+     * Method sets specified attribute to specified score.
+     * Method uses abbreviations of attributes.
+     * @param attr attribute you want to set
+     * @param score score you want
+     */
     public void setAttribute(String attr, int score){
         switch (attr){
             case "str":
@@ -919,6 +960,11 @@ public class DDCharacter implements Serializable {
         setSkills(attr);
     }
 
+    /**
+     * Method returns the modifier of given attribute
+     * @param attr attribute of modifier you want
+     * @return modifier of attribute
+     */
     public int getAttributeModifier(String attr){
         int mod = 0;
         switch (attr){
@@ -946,6 +992,11 @@ public class DDCharacter implements Serializable {
         return mod;
     }
 
+    /**
+     * Method adds a value to given attribute.
+     * @param attr attribute you want to modify
+     * @param amount amount you want to modify by
+     */
     public void addToAttribute(String attr, int amount){
         switch (attr){
             case "str":
@@ -978,6 +1029,11 @@ public class DDCharacter implements Serializable {
         setSkills(attr);
     }
 
+    /**
+     * Method sets modifier of attribute of given index to given score.
+     * @param i index of attribute
+     * @param score attribute score
+     */
     public void setAttributeModifier(int i, int score) {
         int mod = 0;
         if(score == 1){
@@ -1031,10 +1087,18 @@ public class DDCharacter implements Serializable {
         attributes[i][1] = mod;
     }
 
+    /**
+     * Method returns array holding values of attribute saves and their proficiencies.
+     * @return 2D array of information about attribute saves
+     */
     public int[][] getAttributeSaves() {
         return attributeSaves;
     }
 
+    /**
+     * Method sets the attribute save value according to whether attribute has proficiency or not.
+     * @param attr attribute you want to change
+     */
     public void setAttributeSaveMod(String attr){
         switch (attr){
             case "str":
@@ -1060,6 +1124,11 @@ public class DDCharacter implements Serializable {
         }
     }
 
+    /**
+     * Method sets given attribute save.
+     * @param attr attribute
+     * @param toggle proficiency switch, true if has and false if hasn't
+     */
     public void setAttributeSave(String attr, boolean toggle) {
         // Toggle 1 = true, 0 = false
         switch (attr){

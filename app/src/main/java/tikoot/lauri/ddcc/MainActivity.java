@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private ServiceConnection serviceConnection;
     private boolean isBound = false;
 
-
+    /**
+     * On this method connection to database service is declared.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         serviceConnection = new DatabaseServiceConnection();
     }
 
+    /**
+     * Method binds database service to package ocntext.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         bindService(i, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
+    /**
+     * Method unbinds the connection to database service.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -47,10 +56,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method handles clicking on menu buttons.
+     * - Creator creates DDCharacter (bad practicse, needs to be fixed) and sends it to CreatorActivity
+     * - Exit simply closes the software
+     * @param view clicked button
+     */
     public void clicked(View view) {
         if(view.getId() == R.id.menu_button_creator) {
             Intent i = new Intent(this, CreatorActivity.class);
             // Create random character for next activity
+            // TODO: fix this shit
             ddCharacter = new DDCharacter();
             i.putExtra("character", ddCharacter);
             startActivity(i);
@@ -59,16 +75,28 @@ public class MainActivity extends AppCompatActivity {
             finishAndRemoveTask();
         }
     }
+
+    /**
+     * Inner class for handling database connection
+     */
     class DatabaseServiceConnection implements ServiceConnection {
 
+        /**
+         * Method is called when service is connected. Binds the service through LocalBinder
+         * @param componentName
+         * @param service
+         */
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             LocalBinder binder = (LocalBinder) service;
-            dbService    = binder.getService();
+            dbService = binder.getService();
             isBound = true;
-            Toast.makeText(getApplicationContext(), "Service Bound",Toast.LENGTH_LONG);
         }
 
+        /**
+         * Method ticks isBound check off.
+         * @param componentName
+         */
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             isBound = false;

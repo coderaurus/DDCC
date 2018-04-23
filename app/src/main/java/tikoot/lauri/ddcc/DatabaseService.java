@@ -19,14 +19,6 @@ public class DatabaseService extends Service{
     private IBinder mBinder;
 
     /**
-     * Constructor. Builds the database.
-     */
-    public DatabaseService() {
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "character").build();
-    }
-
-    /**
      * Method returns LocalBinder connected to this class
      * @param intent intent given on bind
      * @return LocalBinder
@@ -38,10 +30,12 @@ public class DatabaseService extends Service{
     }
 
     /**
-     * Lifecycle method. Initializes variable holding LocalBinder
+     * Lifecycle method. Initializes variable holding LocalBinder and builds the database.
      */
     @Override
     public void onCreate() {
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "character").build();
         mBinder = new LocalBinder(this);
     }
 

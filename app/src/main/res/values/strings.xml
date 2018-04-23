@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DDCC</string>
+    <string name="app_name">DnD Character Creator</string>
     <string-array name="classes">
         <item>Barbarian</item>
         <item>Bard</item>
@@ -14,7 +14,7 @@
         <item>Warlock</item>
         <item>Wizard</item>
     </string-array>
-    <string name="races">
+    <string-array name="races">
         <item>Dragonborn</item>
         <item>Dwarf</item>
         <item>Elf</item>
@@ -24,5 +24,97 @@
         <item>Half-Orc</item>
         <item>Human</item>
         <item>Tiefling</item>
-    </string>
+    </string-array>
+    <string-array name="backgrounds">
+        <item>Acolyte</item>
+        <item>Charlatan</item>
+        <item>Criminal</item>
+        <item>Entertainer</item>
+        <item>Folk Hero</item>
+        <item>Guild Artisan</item>
+        <item>Hermit</item>
+        <item>Noble</item>
+        <item>Outlander</item>
+        <item>Sage</item>
+        <item>Sailor</item>
+        <item>Soldier</item>
+        <item>Urchin</item>
+    </string-array>
+    <string-array name="alignments">
+        <item>Lawful Good</item>
+        <item>Neutral Good</item>
+        <item>Chaotic Good</item>
+        <item>Lawful Evil</item>
+        <item>Neutral Evil</item>
+        <item>Chaotic Evil</item>
+        <item>Lawful Neutral</item>
+        <item>Neutral</item>
+        <item>Chaotic Neutral</item>
+    </string-array>
+    <string-array name="levels">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+        <item name="8">8</item>
+        <item name="9">9</item>
+        <item name="10">10</item>
+        <item name="11">11</item>
+        <item name="12">12</item>
+        <item name="13">13</item>
+        <item name="14">14</item>
+        <item name="15">15</item>
+        <item name="16">16</item>
+        <item name="17">17</item>
+        <item name="18">18</item>
+        <item name="19">19</item>
+        <item name="20">20</item>
+    </string-array>
+    <string-array name="attributes">
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+        <item name="8">8</item>
+        <item name="9">9</item>
+        <item name="10">10</item>
+        <item name="11">11</item>
+        <item name="12">12</item>
+        <item name="13">13</item>
+        <item name="14">14</item>
+        <item name="15">15</item>
+        <item name="16">16</item>
+        <item name="17">17</item>
+        <item name="18">18</item>
+    </string-array>
+
+    <string name="strength">Strength</string>
+    <string name="dexterity">Dexterity</string>
+    <string name="constitution">Constitution</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="wisdom">Wisdom</string>
+    <string name="charisma">Charisma</string>
+
+    <string name="acrobatics">Acrobatics</string>
+    <string name="animalHandling">Animal Handling</string>
+    <string name="arcana">Arcana</string>
+    <string name="athletics">Athletics</string>
+    <string name="deception">Deception</string>
+    <string name="history">History</string>
+    <string name="insight">Insight</string>
+    <string name="intimidation">Intimidation</string>
+    <string name="investigation">Investigation</string>
+    <string name="medicine">Medicine</string>
+    <string name="nature">Nature</string>
+    <string name="perception">Perception</string>
+    <string name="performance">Performance</string>
+    <string name="persuasion">Persuasion</string>
+    <string name="religion">Religion</string>
+    <string name="sleightOfHand">Sleight of Hand</string>
+    <string name="stealth">Stealth</string>
+    <string name="survival">Survival</string>
 </resources>

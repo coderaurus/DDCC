@@ -8,23 +8,44 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+/**
+ * DAO class of DDCharacter.
+ */
 @Dao
 public interface DDCharacterDao {
+    /**
+     * Method returns all characters found in database in List
+     * @return list of characters
+     */
     @Query("SELECT * FROM DDCharacter")
     List<DDCharacter> getAll();
 
-    @Query("SELECT * FROM DDCharacter WHERE id IN (:id)")
-    List<DDCharacter> loadAllByIds(int[] id);
-
+    /**
+     * Method returns character of given index found in database
+     * @param id index of character
+     * @return character
+     */
     @Query("SELECT * FROM DDCharacter WHERE id = :id LIMIT 1")
     DDCharacter findById(int id);
 
+    /**
+     * Method updates given character(s) in database
+     * @param characters array of characters to update
+     */
     @Update
     public void updateUsers(DDCharacter... characters);
 
+    /**
+     * Method inserts given characters to database.
+     * @param characters
+     */
     @Insert
     void insertAll(DDCharacter... characters);
 
+    /**
+     * Method deletes given character from database
+     * @param character
+     */
     @Delete
     void delete(DDCharacter character);
 }

@@ -10,29 +10,46 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * This is the bound service which handles methods to database.
+ */
 public class DatabaseService extends Service{
 
     private AppDatabase db;
     private IBinder mBinder;
 
+    /**
+     * Method returns LocalBinder connected to this class
+     * @param intent intent given on bind
+     * @return LocalBinder
+     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "character").build();
         return mBinder;
     }
 
+    /**
+     * Lifecycle method. Initializes variable holding LocalBinder and builds the database.
+     */
     @Override
     public void onCreate() {
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "character").build();
         mBinder = new LocalBinder(this);
     }
 
+    /**
+     * Lifecycle method.
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
     }
 
+    /**
+     * Method loads character data from database.
+     */
     public void loadCharacter(){
         new AsyncTask<Void, Void, Void>(){
             @Override
@@ -45,6 +62,10 @@ public class DatabaseService extends Service{
         }.execute();
     }
 
+    /**
+     * Method saves currently edited DnD character to database.
+     * @param character character currently being edited
+     */
     public void saveCharacter(DDCharacter character){
         new AsyncTask<Void, Void, Void>(){
             @Override
@@ -65,6 +86,9 @@ public class DatabaseService extends Service{
         Toast.makeText(getApplicationContext(), "Save successful", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Lifecycle method.
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();

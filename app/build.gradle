@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "tikoot.lauri.ddcc"
@@ -29,15 +33,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     // Java8 support for Lifecycles
-    implementation "android.arch.lifecycle:common-java8:1.1.1"
-
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
     // Room (use 1.1.0-beta3 for latest beta)
-    implementation "android.arch.persistence.room:runtime:1.0.0"
+    implementation 'android.arch.persistence.room:runtime:1.0.0'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-
     // Test helpers for Room
-    testImplementation "android.arch.persistence.room:testing:1.0.0"
+    testImplementation 'android.arch.persistence.room:testing:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.2'
 }
